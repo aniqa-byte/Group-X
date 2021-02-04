@@ -1,7 +1,11 @@
 Group Name: Group-X
-Team contributors: Aniqa Abdullah
+Product Title: TheReadables
 
-Team contributors: Ali, Yusuf  
+Team contributors: Abdullah, Aniqa
+
+Team contributors: Ali, Yusuf
+
+Team contributors: Christofi, Christopher
 
 Team contributors: Kevin Molokwu
 

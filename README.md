@@ -1,12 +1,13 @@
 Group X
+
 Product title: TheReadables
 
 Contributors:
-Aniqa Abdullah
-Yusuf Ali
-Christopher Christofi
-Kevin Molokwu
-Chukwuyenum Nnaghor
+- Aniqa Abdullah
+- Yusuf Ali
+- Christopher Christofi
+- Kevin Molokwu
+- Chukwuyenum Nnaghor
 
 Features:
 - Dashboard

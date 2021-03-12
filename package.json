@@ -1,0 +1,27 @@
+{
+  "name": "group-x",
+  "version": "0.0.2",
+  "description": "Student project library database application",
+  "main": "main.js",
+  "scripts": {
+    "start": "node main.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aniqa-byte/Group-X.git"
+  },
+  "keywords": [
+    "JavaScript",
+    "Node.js",
+    "Express.js",
+    "SQLite",
+    "Angular.js"
+  ],
+  "author": "AA; CLC; KM; CN",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/aniqa-byte/Group-X/issues"
+  },
+  "homepage": "https://github.com/aniqa-byte/Group-X#readme"
+}

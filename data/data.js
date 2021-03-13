@@ -3,8 +3,8 @@
 // Import Sqlite3 library.
 const sqlite3 = require("sqlite3").verbose();
 
-// The application layer uses student classes
-const user = require("../library.js");
+// The application layer uses library classes
+const library = require("../library.js");
 
 // Initiate database connection
 var db = new sqlite3.Database("data/database.db", function(err) {
@@ -14,7 +14,7 @@ var db = new sqlite3.Database("data/database.db", function(err) {
     console.log("Connected to library database.");
 });
 
-// Export getUsers function
+// Export getUsers function, displaying public user details
 exports.getUsers = function(callback) {
     // Create SQL statement
     var sql = `
@@ -39,13 +39,53 @@ exports.getUsers = function(callback) {
         // Create loop through the rows to build user objects
         for (var row of rows) {
             // Create credentials object
-            var credential = new user.User(row.password);
+            var credential = new library.User(row.password);
             // Create user object
-            var user_detail = new user.User(row.id, row.email);
+            var user_detail = new library.User(row.id, row.email, row.access);
             // Add user to created array
             user_collection.push(user_detail);
         }
         // Execute callback function
         callback(user_collection);
+    });
+};
+
+// Export getBookItems callbook function, retrieving all open book items
+exports.getBookItems = function(callback) {
+    // SQL statement
+    var sql = `
+        SELECT
+            books.title,
+            books.author,
+            books.genre,
+            books.item_link,
+            books.item_description
+        FROM
+            books,
+            book_categories
+        WHERE
+            books.visible = 1
+            AND books.genre = book_categories.category
+        `;
+    // Excecute query. Return all book item details
+    db.all(sql, function(err, rows) {
+        // Error handling
+        if (err) {
+            return console.error(err.message);
+        }
+        // Create an array for book items
+        var book_items = [];
+        // Loop through rows creating Book object
+        for (var row of rows) {
+            // Create book category object
+            var categ = new library.Book(row.genre);
+            // Create book item object
+            // TO DO add item_description to book item object
+            var book = new library.Book(row.title, row.author, row.item_link, categ);
+            // Add book item to array
+            book_items.push(book);
+        }
+        // Execute callback function
+        callback(book_items);
     });
 };

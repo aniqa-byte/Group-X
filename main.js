@@ -1,1 +1,5 @@
-console.log("Yes yes Group X.")
+"use strict";
+
+// Call app.js
+// Initiate code
+const app = require("./app/app");

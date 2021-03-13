@@ -41,7 +41,7 @@ exports.getUsers = function(callback) {
             // Create credentials object
             var credential = new user.User(row.password);
             // Create user object
-            var user_detail = new user.User(row.id, row.email, credential);
+            var user_detail = new user.User(row.id, row.email);
             // Add user to created array
             user_collection.push(user_detail);
         }

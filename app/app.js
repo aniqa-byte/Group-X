@@ -28,7 +28,7 @@ app.get("/users", function(req, res) {
 });
 
 // Add /book endpoint
-app.get("/book/:title", function(res, req) {
+app.get("/book/:title", function(req, res) {
     // Return book detail
     res.send("Book title: " + req.params.title);
 });
@@ -40,13 +40,13 @@ app.get("/books", function(req, res) {
 });
 
 // Add /category endpoint
-app.get("/category/:category", function(res, req) {
+app.get("/category/:category", function(req, res) {
     // Return categroup group option
     res.send("Category: " + req.params.category);
 });
 
 // Add /categories endpoint
-app.get("/categories", function(res, req) {
+app.get("/categories", function(req, res) {
     // Return all category options
     res.send("All categories");
 });

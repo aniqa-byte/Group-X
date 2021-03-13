@@ -74,7 +74,7 @@ exports.getBookItems = function(callback) {
             return console.error(err.message);
         }
         // Create an array for book items
-        var book_items = [];
+        var book_collection = [];
         // Loop through rows creating Book object
         for (var row of rows) {
             // Create book category object
@@ -83,9 +83,9 @@ exports.getBookItems = function(callback) {
             // TO DO add item_description to book item object
             var book = new library.Book(row.title, row.author, row.item_link, categ);
             // Add book item to array
-            book_items.push(book);
+            book_collection.push(book);
         }
         // Execute callback function
-        callback(book_items);
+        callback(book_collection);
     });
 };

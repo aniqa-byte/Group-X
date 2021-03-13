@@ -37,8 +37,10 @@ app.get("/book/:title", function(req, res) {
 
 // Add /books endpoint
 app.get("/books", function(req, res) {
-    // Return all info links
-    res.send("All books");
+    // Call getBookItems from data
+    data.getBookItems(function(book_collection) {
+        res.json(book_collection);
+    });
 });
 
 // Add /category endpoint

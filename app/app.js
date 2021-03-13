@@ -51,8 +51,10 @@ app.get("/category/:category", function(req, res) {
 
 // Add /categories endpoint
 app.get("/categories", function(req, res) {
-    // Return all category options
-    res.send("All categories");
+    // Call getCategories from data
+    data.getCategories(function(book_categories) {
+        res.json(book_categories);
+    });
 });
 
 // Initiate listen on port 3000

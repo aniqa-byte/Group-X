@@ -18,3 +18,5 @@ EXPOSE 3000
 
 # On start, run the application using npm
 ENTRYPOINT ["npm", "start"]
+
+# docker run --rm groupx-project

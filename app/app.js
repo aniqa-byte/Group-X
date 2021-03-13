@@ -49,8 +49,10 @@ app.get("/books", function(req, res) {
 
 // Add /category endpoint
 app.get("/category/:category", function(req, res) {
-    // Return categroup group option
-    res.send("Category: " + req.params.category);
+    // Call getCategory callback function from data
+    data.getCategory(req.params.category, function(category_selected) {
+        res.json(category_selected);
+    })
 });
 
 // Add /categories endpoint

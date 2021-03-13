@@ -77,9 +77,7 @@ exports.getBookItems = function(callback) {
         SELECT
             books.title,
             books.author,
-            books.genre,
-            books.item_link,
-            books.item_description
+            books.genre
         FROM
             books,
             book_categories
@@ -100,13 +98,38 @@ exports.getBookItems = function(callback) {
             // Create book category object
             var categ = new library.Book(row.genre);
             // Create book item object
-            // TO DO add item_description to book item object
-            var book = new library.Book(row.title, row.author, row.item_link, categ);
+            var book = new library.Book(row.title, row.author, categ);
             // Add book item to array
             book_collection.push(book);
         }
         // Execute callback function
         callback(book_collection);
+    });
+};
+
+exports.getBook = function(title, callback) {
+    // Create SQL statement
+    var sql = `
+    SELECT
+        b.title,
+        b.author,
+        b.genre,
+        b.item_link,
+        b.item_description
+    FROM
+        books b
+    WHERE
+        b.title = '${title}'
+    `;
+    // Execute query. Return book matching title entry
+    db.get(sql, function(err, row) {
+        if (err) {
+            return console.error(error.message);
+        }
+        // Create a book object
+        var book_item = new library.Book(row.title, row.author, row.genre, row.item_link, row.item_description);
+        // Return selected
+        callback(book_item);
     });
 };
 

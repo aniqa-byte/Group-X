@@ -89,3 +89,32 @@ exports.getBookItems = function(callback) {
         callback(book_collection);
     });
 };
+
+// Export getCategories function, display all category types
+exports.getCategories = function(callback) {
+    // Create SQL statement
+    var sql = `
+        SELECT
+            bc.category,
+            bc.category_description
+        FROM book_categories bc
+        `;
+    // Execute query. Return all book category types
+    db.all(sql, function(err, rows) {
+        // Error handling
+        if (err) {
+            return console.error(err.message);
+        }
+        // Create an array of categories
+        var category_types = [];
+        // Loop through rows creating Category objects
+        for (var row of rows) {
+            // Create category object
+            var category_type = new library.Book(row.category, row.category_description);
+            // Add category to array
+            category_types.push(category_type);
+        }
+        // Execute callback function
+        callback(category_types);
+    });
+};

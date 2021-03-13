@@ -107,6 +107,7 @@ exports.getBookItems = function(callback) {
     });
 };
 
+// Export getBook callback function, retrieving selected book item
 exports.getBook = function(title, callback) {
     // Create SQL statement
     var sql = `
@@ -159,5 +160,30 @@ exports.getCategories = function(callback) {
         }
         // Execute callback function
         callback(category_types);
+    });
+};
+
+// Export getCategory callback function, retrieve selected category
+exports.getCategory = function(category, callback) {
+    // Create sql statement
+    var sql = `
+    SELECT
+        bc.category,
+        bc.category_description
+    FROM
+        book_categories bc
+    WHERE
+        bc.category = '${category}'
+    `;
+    // Execute sql query, retrieve category details matching category input
+    db.get(sql, function(err, row) {
+        // Error handling
+        if (err) {
+            return console.error(err.message);
+        }
+        // Create selected category object
+        var category_selected = new library.Book(row.category, row.category_description);
+        // Return category
+        callback(category_selected);
     });
 };

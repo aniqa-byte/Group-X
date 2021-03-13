@@ -50,6 +50,23 @@ exports.getUsers = function(callback) {
     });
 };
 
+exports.getUserProfile = function(email, callback) {
+    // Create SQL statement
+    var sql = `
+        SELECT * FROM users
+        WHERE email = '${email}'`;
+    // Execute query. Returning user row matching email.
+    db.get(sql, function(err, row) {
+        if (err) {
+            return console.error(err.message);
+        }
+        // Create a profile object
+        var profile = new library.User(row.id, row.email);
+        // Return profile
+        callback(profile);
+    });
+};
+
 // Export getBookItems callbook function, retrieving all open book items
 exports.getBookItems = function(callback) {
     // SQL statement

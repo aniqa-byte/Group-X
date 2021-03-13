@@ -17,8 +17,10 @@ app.use(express.static("static"));
 
 // Add /user endpoint
 app.get("/user/:email", function(req, res) {
-    // Return user detail
-    res.send("User email: " + req.params.email);
+    // Call getUserProfile from data
+    data.getUserProfile(req.params.email, function(user_profile) {
+        res.json(user_profile);
+    });
 });
 
 // Add /users endpoint

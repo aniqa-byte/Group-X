@@ -33,8 +33,10 @@ app.get("/users", function(req, res) {
 
 // Add /book endpoint
 app.get("/book/:title", function(req, res) {
-    // Return book detail
-    res.send("Book title: " + req.params.title);
+    // Call getBook from data
+    data.getBook(req.params.title, function(book_item) {
+        res.json(book_item);
+    });
 });
 
 // Add /books endpoint

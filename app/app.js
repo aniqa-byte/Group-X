@@ -23,8 +23,10 @@ app.get("/user/:email", function(req, res) {
 
 // Add /users endpoint
 app.get("/users", function(req, res) {
-    // Return all users
-    res.send("All users");
+    // Call getUsers from data
+    data.getUsers(function(user_collection) {
+        res.json(user_collection);
+    });
 });
 
 // Add /book endpoint

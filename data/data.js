@@ -80,8 +80,6 @@ exports.getBookItems = (callback) => {
             books.genre
         FROM
             books
-        WHERE
-            books.visible = 1
         `;
     // Excecute query. Return all book item details
     db.all(sql, (err, rows) => {
@@ -108,27 +106,21 @@ exports.getBook = (title, callback) => {
     // Create SQL statement
     var sql = `
     SELECT
-        b.title,
-        b.author,
-        b.genre,
+        bd.title,
         bd.item_link,
         bd.item_description
     FROM
-        books b,
         book_details bd
     WHERE
-        b.title = '${title}'
-        AND b.title = bd.title
+        bd.title = '${title}'
     `;
     // Execute query. Return book matching title entry
     db.get(sql, (err, row) => {
             if (err) {
                 return console.error(error.message);
             }
-            // Create a details object
-            var details = new library.Book_details(row.item_link, row.item_description)
             // Create a book object
-            var book_item = new library.Book(row.title, row.author, row.genre, details);
+            var book_item = new library.Book_details(row.item_link, row.item_description, row.title);
             // Return selected
             callback(book_item);
         });

@@ -47,19 +47,19 @@ app.get("/books", (req, res) => {
             });
     });
 
-// Add /category endpoint
-app.get("/category/:category", (req, res) => {
-        // Call getCategory callback function from data
-        data.getCategory(req.params.category, (category_selected) => {
-                res.json(category_selected);
+// Add /genre endpoint
+app.get("/genre/:genre", (req, res) => {
+        // Call getGenre callback function from data
+        data.getGenre(req.params.genre, (genre_selected) => {
+                res.json(genre_selected);
             });
     });
 
-// Add /categories endpoint
-app.get("/categories", (req, res) => {
-        // Call getCategories from data
-        data.getCategories((book_categories) => {
-                res.json(book_categories);
+// Add /all-genre endpoint
+app.get("/all-genre", (req, res) => {
+        // Call getAllGenre from data
+        data.getAllGenre((genre_types) => {
+                res.json(genre_types);
             });
     });
 
@@ -68,5 +68,5 @@ app.listen(3000, (err) => {
         if (err) {
             return console.error(err.message);
         }
-        console.log("Server started.");
+        console.log("Server listening on port 3000.");
     });

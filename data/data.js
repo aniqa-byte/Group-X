@@ -79,11 +79,9 @@ exports.getBookItems = (callback) => {
             books.author,
             books.genre
         FROM
-            books,
-            book_categories
+            books
         WHERE
             books.visible = 1
-            AND books.genre = book_categories.category
         `;
     // Excecute query. Return all book item details
     db.all(sql, (err, rows) => {
@@ -95,10 +93,8 @@ exports.getBookItems = (callback) => {
             var book_collection = [];
             // Loop through rows creating Book object
             for (var row of rows) {
-                // Create book category object
-                var categ = new library.Book(row.genre);
                 // Create book item object
-                var book = new library.Book(row.title, row.author, categ);
+                var book = new library.Book(row.title, row.author, row.genre);
                 // Add book item to array
                 book_collection.push(book);
             }

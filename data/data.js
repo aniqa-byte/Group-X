@@ -130,46 +130,47 @@ exports.getBook = (title, callback) => {
         });
 };
 
-// Export getCategories function, display all category types
-exports.getCategories = (callback) => {
+// Export getAllGenre function, display all category types
+exports.getAllGenre = (callback) => {
     // Create SQL statement
     var sql = `
         SELECT
-            bc.category,
-            bc.category_description
-        FROM book_categories bc
+            bg.genre,
+            bg.genre_description
+        FROM book_genre bg
         `;
-    // Execute query. Return all book category types
+    // Execute query. Return all book genre types
     db.all(sql, (err, rows) => {
             // Error handling
             if (err) {
                 return console.error(err.message);
             }
-            // Create an array of categories
-            var category_types = [];
-            // Loop through rows creating Category objects
+            // Create an array of genre
+            var genre_types = [];
+            // Loop through rows creating Genre objects
             for (var row of rows) {
-                // Create category object
-                var category_type = new library.Book(row.category, row.category_description);
-                // Add category to array
-                category_types.push(category_type);
+                // Create genre object
+                var genre_type = new library.Book(row.genre, row.genre_description);
+                // Add genre to array
+                genre_types.push(genre_type);
             }
             // Execute callback function
-            callback(category_types);
+            callback(genre_types);
         });
 };
 
-// Export getCategory callback function, retrieve selected category
-exports.getCategory = (category, callback) => {
+// TODO1: integrate and match with selected book
+// Export getGenre callback function, retrieve selected category
+exports.getGenre = (genre, callback) => {
     // Create sql statement
     var sql = `
     SELECT
-        bc.category,
-        bc.category_description
+        bg.genre,
+        bg.genre_description
     FROM
-        book_categories bc
+        book_genre bg
     WHERE
-        bc.category = '${category}'
+        bc.genre = '${genre}'
     `;
     // Execute sql query, retrieve category details matching category input
     db.get(sql, (err, row) => {
@@ -177,9 +178,9 @@ exports.getCategory = (category, callback) => {
             if (err) {
                 return console.error(err.message);
             }
-            // Create selected category object
-            var category_selected = new library.Book(row.category, row.category_description);
-            // Return category
-            callback(category_selected);
+            // Create selected genre object
+            var genre_selected = new library.Book(row.genre, row.genre_description);
+            // Return genre
+            callback(genre_selected);
         });
 };

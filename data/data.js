@@ -124,7 +124,7 @@ exports.getBook = (title, callback) => {
                 return console.error(error.message);
             }
             // Create a book object
-            var book_item = new library.Book(row.title, row.author, row.genre, row.item_link, row.item_description);
+            var book_item = new library.Book_genre(row.title, row.author, row.genre, row.item_link, row.item_description);
             // Return selected
             callback(book_item);
         });
@@ -150,7 +150,7 @@ exports.getAllGenre = (callback) => {
             // Loop through rows creating Genre objects
             for (var row of rows) {
                 // Create genre object
-                var genre_type = new library.Book(row.genre, row.genre_description);
+                var genre_type = new library.Book_genre(row.genre, row.genre_description);
                 // Add genre to array
                 genre_types.push(genre_type);
             }
@@ -170,7 +170,7 @@ exports.getGenre = (genre, callback) => {
     FROM
         book_genre bg
     WHERE
-        bc.genre = '${genre}'
+        bg.genre = '${genre}'
     `;
     // Execute sql query, retrieve category details matching category input
     db.get(sql, (err, row) => {

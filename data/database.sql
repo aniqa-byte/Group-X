@@ -31,15 +31,14 @@ CREATE TABLE books (
     title VARCHAR (50) PRIMARY KEY,
     author VARCHAR (50),
     genre VARCHAR (50),
-    visible INTEGER (1),
-    FOREIGN KEY (genre) REFERENCES book_categories (category)
+    FOREIGN KEY (genre) REFERENCES book_genre (genre)
 );
-INSERT INTO books VALUES('Title 1','Author 1','Genre 1',1);
-INSERT INTO books VALUES('Title 2','Author 1','Genre 1',0);
-INSERT INTO books VALUES('Title 3','Author 2','Genre 1',1);
-INSERT INTO books VALUES('Title 4','Author 3','Genre 2',1);
-INSERT INTO books VALUES('Title 5','Author 4','Genre 3',1);
-INSERT INTO books VALUES('Title 6','Author 4','Genre 3',1);
+INSERT INTO books VALUES('Title 1','Author 1','Genre 1');
+INSERT INTO books VALUES('Title 2','Author 1','Genre 1');
+INSERT INTO books VALUES('Title 3','Author 2','Genre 1');
+INSERT INTO books VALUES('Title 4','Author 3','Genre 2');
+INSERT INTO books VALUES('Title 5','Author 4','Genre 3');
+INSERT INTO books VALUES('Title 6','Author 4','Genre 3');
 CREATE TABLE book_details (
     title VARCHAR (50),
     item_link TEXT,

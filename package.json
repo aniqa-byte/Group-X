@@ -4,7 +4,7 @@
   "description": "Student project library database application",
   "main": "main.js",
   "scripts": {
-    "start": "node main.js",
+    "start": "nodemon main.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -26,6 +26,7 @@
   "homepage": "https://github.com/aniqa-byte/Group-X#readme",
   "dependencies": {
     "express": "^4.17.1",
+    "nodemon": "^2.0.7",
     "sqlite3": "^5.0.2"
   }
 }

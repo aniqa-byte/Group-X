@@ -111,20 +111,24 @@ exports.getBook = (title, callback) => {
         b.title,
         b.author,
         b.genre,
-        b.item_link,
-        b.item_description
+        bd.item_link,
+        bd.item_description
     FROM
-        books b
+        books b,
+        book_details bd
     WHERE
         b.title = '${title}'
+        AND b.title = bd.title
     `;
     // Execute query. Return book matching title entry
     db.get(sql, (err, row) => {
             if (err) {
                 return console.error(error.message);
             }
+            // Create a details object
+            var details = new library.Book_details(row.item_link, row.item_description)
             // Create a book object
-            var book_item = new library.Book_genre(row.title, row.author, row.genre, row.item_link, row.item_description);
+            var book_item = new library.Book(row.title, row.author, row.genre, details);
             // Return selected
             callback(book_item);
         });
@@ -179,7 +183,7 @@ exports.getGenre = (genre, callback) => {
                 return console.error(err.message);
             }
             // Create selected genre object
-            var genre_selected = new library.Book(row.genre, row.genre_description);
+            var genre_selected = new library.Book_genre(row.genre, row.genre_description);
             // Return genre
             callback(genre_selected);
         });

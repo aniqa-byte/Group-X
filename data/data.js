@@ -7,15 +7,15 @@ const sqlite3 = require("sqlite3").verbose();
 const library = require("../library.js");
 
 // Initiate database connection
-var db = new sqlite3.Database("data/database.db", function(err) {
-    if (err) {
-        return console.error(err.message);
-    }
-    console.log("Connected to library database.");
-});
+var db = new sqlite3.Database("data/database.db", (err) => {
+        if (err) {
+            return console.error(err.message);
+        }
+        console.log("Connected to library database.");
+    });
 
 // Export getUsers function, displaying public user details
-exports.getUsers = function(callback) {
+exports.getUsers = (callback) => {
     // Create SQL statement
     var sql = `
         SELECT
@@ -29,7 +29,7 @@ exports.getUsers = function(callback) {
             users.id = credentials.user_id
         `;
     // Execute query. Return all
-    db.all(sql, function(err, rows) {
+    db.all(sql, (err, rows) => {
         // Check if error
         if (err) {
             return console.error(err.message);
@@ -50,7 +50,7 @@ exports.getUsers = function(callback) {
     });
 };
 
-exports.getUserProfile = function(email, callback) {
+exports.getUserProfile = (email, callback) => {
     // Create SQL statement
     var sql = `
         SELECT
@@ -59,19 +59,19 @@ exports.getUserProfile = function(email, callback) {
         FROM users
         WHERE users.email = '${email}'`;
     // Execute query. Returning user row matching email.
-    db.get(sql, function(err, row) {
-        if (err) {
-            return console.error(err.message);
-        }
-        // Create a profile object
-        var user_profile = new library.User(row.id, row.email);
-        // Return profile
-        callback(user_profile);
-    });
+    db.get(sql, (err, row) => {
+            if (err) {
+                return console.error(err.message);
+            }
+            // Create a profile object
+            var user_profile = new library.User(row.id, row.email);
+            // Return profile
+            callback(user_profile);
+        });
 };
 
 // Export getBookItems callbook function, retrieving all open book items
-exports.getBookItems = function(callback) {
+exports.getBookItems = (callback) => {
     // SQL statement
     var sql = `
         SELECT
@@ -86,29 +86,29 @@ exports.getBookItems = function(callback) {
             AND books.genre = book_categories.category
         `;
     // Excecute query. Return all book item details
-    db.all(sql, function(err, rows) {
-        // Error handling
-        if (err) {
-            return console.error(err.message);
-        }
-        // Create an array for book items
-        var book_collection = [];
-        // Loop through rows creating Book object
-        for (var row of rows) {
-            // Create book category object
-            var categ = new library.Book(row.genre);
-            // Create book item object
-            var book = new library.Book(row.title, row.author, categ);
-            // Add book item to array
-            book_collection.push(book);
-        }
-        // Execute callback function
-        callback(book_collection);
-    });
+    db.all(sql, (err, rows) => {
+            // Error handling
+            if (err) {
+                return console.error(err.message);
+            }
+            // Create an array for book items
+            var book_collection = [];
+            // Loop through rows creating Book object
+            for (var row of rows) {
+                // Create book category object
+                var categ = new library.Book(row.genre);
+                // Create book item object
+                var book = new library.Book(row.title, row.author, categ);
+                // Add book item to array
+                book_collection.push(book);
+            }
+            // Execute callback function
+            callback(book_collection);
+        });
 };
 
 // Export getBook callback function, retrieving selected book item
-exports.getBook = function(title, callback) {
+exports.getBook = (title, callback) => {
     // Create SQL statement
     var sql = `
     SELECT
@@ -123,19 +123,19 @@ exports.getBook = function(title, callback) {
         b.title = '${title}'
     `;
     // Execute query. Return book matching title entry
-    db.get(sql, function(err, row) {
-        if (err) {
-            return console.error(error.message);
-        }
-        // Create a book object
-        var book_item = new library.Book(row.title, row.author, row.genre, row.item_link, row.item_description);
-        // Return selected
-        callback(book_item);
-    });
+    db.get(sql, (err, row) => {
+            if (err) {
+                return console.error(error.message);
+            }
+            // Create a book object
+            var book_item = new library.Book(row.title, row.author, row.genre, row.item_link, row.item_description);
+            // Return selected
+            callback(book_item);
+        });
 };
 
 // Export getCategories function, display all category types
-exports.getCategories = function(callback) {
+exports.getCategories = (callback) => {
     // Create SQL statement
     var sql = `
         SELECT
@@ -144,27 +144,27 @@ exports.getCategories = function(callback) {
         FROM book_categories bc
         `;
     // Execute query. Return all book category types
-    db.all(sql, function(err, rows) {
-        // Error handling
-        if (err) {
-            return console.error(err.message);
-        }
-        // Create an array of categories
-        var category_types = [];
-        // Loop through rows creating Category objects
-        for (var row of rows) {
-            // Create category object
-            var category_type = new library.Book(row.category, row.category_description);
-            // Add category to array
-            category_types.push(category_type);
-        }
-        // Execute callback function
-        callback(category_types);
-    });
+    db.all(sql, (err, rows) => {
+            // Error handling
+            if (err) {
+                return console.error(err.message);
+            }
+            // Create an array of categories
+            var category_types = [];
+            // Loop through rows creating Category objects
+            for (var row of rows) {
+                // Create category object
+                var category_type = new library.Book(row.category, row.category_description);
+                // Add category to array
+                category_types.push(category_type);
+            }
+            // Execute callback function
+            callback(category_types);
+        });
 };
 
 // Export getCategory callback function, retrieve selected category
-exports.getCategory = function(category, callback) {
+exports.getCategory = (category, callback) => {
     // Create sql statement
     var sql = `
     SELECT
@@ -176,14 +176,14 @@ exports.getCategory = function(category, callback) {
         bc.category = '${category}'
     `;
     // Execute sql query, retrieve category details matching category input
-    db.get(sql, function(err, row) {
-        // Error handling
-        if (err) {
-            return console.error(err.message);
-        }
-        // Create selected category object
-        var category_selected = new library.Book(row.category, row.category_description);
-        // Return category
-        callback(category_selected);
-    });
+    db.get(sql, (err, row) => {
+            // Error handling
+            if (err) {
+                return console.error(err.message);
+            }
+            // Create selected category object
+            var category_selected = new library.Book(row.category, row.category_description);
+            // Return category
+            callback(category_selected);
+        });
 };

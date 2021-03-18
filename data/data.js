@@ -106,9 +106,9 @@ exports.getBook = (title, callback) => {
     // Create SQL statement
     var sql = `
     SELECT
-        bd.title,
         bd.item_link,
-        bd.item_description
+        bd.item_description,
+        bd.title
     FROM
         book_details bd
     WHERE

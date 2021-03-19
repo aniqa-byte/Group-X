@@ -5,16 +5,22 @@ class User {
     id;
     // User email
     email;
-    // Password
-    password;
-    // Admin
-    access = 0;
 
-    constructor(id, email, password, access) {
+    constructor(id, email) {
         this.id = id;
         this.email = email;
-        this.password = password;
+    }
+}
+
+class User_access {
+    // access level - default non-admin
+    access = 0;
+    // password
+    password;
+
+    constructor(access, password) {
         this.access = access;
+        this.password = password;
     }
 }
 

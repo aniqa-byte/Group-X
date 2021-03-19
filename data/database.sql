@@ -1,32 +1,31 @@
 PRAGMA foreign_keys=OFF;
 BEGIN TRANSACTION;
 CREATE TABLE users (
-    user_number INTEGER PRIMARY KEY,
-    id INTEGER (255) NOT NULL UNIQUE,
-    email TEXT NOT NULL UNIQUE
+    email TEXT PRIMARY KEY,
+    id INTEGER (255)
 );
-INSERT INTO users VALUES(1,11111,'ROOT');
-INSERT INTO users VALUES(2,12222,'test1@email.com');
-INSERT INTO users VALUES(3,13333,'test2@email.com');
-INSERT INTO users VALUES(4,14444,'test3@email.com');
+INSERT INTO users VALUES('ROOT',1);
+INSERT INTO users VALUES('test1@email.com',2);
+INSERT INTO users VALUES('test2@email.com',3);
+INSERT INTO users VALUES('test3@email.com',4);
 CREATE TABLE credentials (
-    user_id INTEGER (255) NOT NULL,
-    password TEXT NOT NULL,
+    password TEXT,
+    user_id INTEGER (255),
     FOREIGN KEY (user_id) REFERENCES users (id)
 );
-INSERT INTO credentials VALUES(11111,'ROOT');
-INSERT INTO credentials VALUES(12222,'AAA111');
-INSERT INTO credentials VALUES(13333,'BBB222');
-INSERT INTO credentials VALUES(14444,'CCC333');
+INSERT INTO credentials VALUES('ROOT',1);
+INSERT INTO credentials VALUES('AAA111',2);
+INSERT INTO credentials VALUES('BBB222',3);
+INSERT INTO credentials VALUES('CCC333',4);
 CREATE TABLE admin_access (
-    user_id INTEGER (255) NOT NULL,
     access INTEGER (1),
+    user_id INTEGER (255),
     FOREIGN KEY (user_id) REFERENCES users (id)
 );
-INSERT INTO admin_access VALUES(11111,1);
-INSERT INTO admin_access VALUES(12222,1);
-INSERT INTO admin_access VALUES(13333,0);
-INSERT INTO admin_access VALUES(14444,0);
+INSERT INTO admin_access VALUES(1,1);
+INSERT INTO admin_access VALUES(1,2);
+INSERT INTO admin_access VALUES(0,3);
+INSERT INTO admin_access VALUES(0,4);
 CREATE TABLE books (
     title VARCHAR (50) PRIMARY KEY,
     author VARCHAR (50),

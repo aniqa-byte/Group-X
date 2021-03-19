@@ -14,6 +14,51 @@ var db = new sqlite3.Database("data/database.db", (err) => {
         console.log("Connected to library database.");
     });
 
+exports.validateAdmin = (email, password, callback) => {
+    // Create SQL statement
+    var sql = `
+        SELECT
+          aa.access
+        FROM
+          admin_access aa
+        WHERE
+          aa.user_id = (SELECT
+                          c.user_id
+                        FROM
+                          credentials c
+                        WHERE
+                          c.password = '${password}'
+                          AND
+                          c.user_id = (SELECT
+                                         u.id
+                                       FROM
+                                         users u
+                                       WHERE
+                                         u.email = '${email}'
+                                         )
+                        )
+        `;
+    db.get(sql, function(err, row) {
+        // Selected user access level as parameter for conditional statements
+        let user_access = row.access
+        // Error handling
+        if (err) {
+            return console.error(err.message);
+        // Qualify if user is not admin level
+        } else if (user_access !== 1) {
+            return console.log("User is not an Admin");
+        // Qualify if user is admin level
+        } else if (user_access === 1) {
+            return console.log("User is an admin");
+        };
+        // Create Access Level Object
+        var access_level = new library.User_access(row.access);
+        // Return user admin
+        callback(access_level);
+    });
+};
+
+
 // Export getUsers function, displaying public user details
 exports.getUsers = (callback) => {
     // Create SQL statement
@@ -54,10 +99,12 @@ exports.getUserProfile = (email, callback) => {
     // Create SQL statement
     var sql = `
         SELECT
-            users.id,
-            users.email
-        FROM users
-        WHERE users.email = '${email}'`;
+            u.id,
+            u.email
+        FROM
+            users u
+        WHERE
+            u.email = '${email}'`;
     // Execute query. Returning user row matching email.
     db.get(sql, (err, row) => {
             if (err) {

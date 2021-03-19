@@ -31,6 +31,14 @@ app.get("/users", (req, res) => {
     });
 });
 
+// Validate /validate-admin endpoint
+app.get("/validate-admin/:email/:password", (req, res) => {
+    // call validateAdmin from data
+    data.validateAdmin(req.params.email, req.params.password, (access_level) => {
+        res.json(access_level)
+    });
+});
+
 // Add /book endpoint
 app.get("/book/:title", (req, res) => {
     // Call getBook from data

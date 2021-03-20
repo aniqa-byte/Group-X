@@ -17,9 +17,9 @@ app.use(express.static("static"));
 
 // Add /user endpoint
 app.get("/user/:email", (req, res) => {
-    // Call getUserProfile from data
-    data.getUserProfile(req.params.email, (user_profile) => {
-        res.json(user_profile);
+    // Call getUser from data
+    data.getUser(req.params.email, (user) => {
+        res.json(user);
     });
 });
 
@@ -28,6 +28,14 @@ app.get("/all-users", (req, res) => {
     // Call getUsers from data
     data.getAllUsers((users) => {
         res.json(users);
+    });
+});
+
+// Delete User Endpoing /user/:email
+app.delete("/user/:email", (req, res) => {
+    // Delete run parameter on data
+    data.deleteUser(req.params.email, () => {
+        res.send("OK");
     });
 });
 

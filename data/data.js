@@ -88,29 +88,68 @@ exports.getAllUsers = (callback) => {
     });
 };
 
-exports.getUserProfile = (email, callback) => {
+exports.getUser = (email, callback) => {
     // Create SQL statement
     var sql = `
         SELECT
             u.id,
-            u.email
+            u.email,
+            aa.access
         FROM
-            users u
+            users u,
+            admin_access aa
         WHERE
-            u.email = '${email}'`;
+            u.email = '${email}'
+            AND
+            u.id = aa.user_id
+        `;
     // Execute query. Returning user row matching email.
     db.get(sql, (err, row) => {
             if (err) {
                 return console.error(err.message);
             }
-            // Create a profile object
-            var user_profile = new library.User(row.id, row.email);
+            // Create a user object
+            var user = new library.User(row.id, row.email);
             // Return profile
-            callback(user_profile);
+            callback(user);
         });
 };
 
-// Export getBookItems callbook function, retrieving all open book items
+// Export deleteUser callback function, delete user matching parameter
+exports.deleteUser = (email, callback) => {
+    // sql statement
+    var sql = `
+        DELETE FROM
+          users
+        WHERE
+          email = '${email}'
+          ;
+        DELETE FROM
+          credentials
+        WHERE
+          user_id = (SELECT
+                       id
+                     FROM
+                       users
+                     WHERE
+                       email = '${email}')
+                       ;
+        DELETE FROM
+          admin_access
+        WHERE
+          user_id = (SELECT
+                       id
+                     FROM
+                       users
+                     WHERE
+                       email = '${email}')
+    `;
+    db.exec(sql, (err) => {
+        callback();
+    });
+};
+
+// Export getBookItems callback function, retrieving all open book items
 exports.getBookItems = (callback) => {
     // SQL statement
     var sql = `

@@ -7,7 +7,6 @@ CREATE TABLE users (
 INSERT INTO users VALUES('ROOT',1);
 INSERT INTO users VALUES('test1@email.com',2);
 INSERT INTO users VALUES('test2@email.com',3);
-INSERT INTO users VALUES('test3@email.com',4);
 CREATE TABLE credentials (
     password TEXT,
     user_id INTEGER (255),

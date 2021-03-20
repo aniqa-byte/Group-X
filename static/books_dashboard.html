@@ -24,7 +24,7 @@
                 <td>{{ book.genre }}</td>
                 <td><input type="button" ng-click="selectBook(book.title)" value="Select"></td>
             </tr>
-
+        </table>
         <div id="selected">
             <h2>{{ selectedBook.title }}</h2>
             <h3>Book Details</h3>
@@ -37,7 +37,6 @@
                     <td>{{ selectedBook.item_link }}</td>
                     <td>{{ selectedBook.item_description }}</td>
                 </tr>
-            </table>
         </div>
         </table>
     </div>

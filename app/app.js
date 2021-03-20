@@ -23,11 +23,11 @@ app.get("/user/:email", (req, res) => {
     });
 });
 
-// Add /users endpoint
-app.get("/users", (req, res) => {
+// Add /all-users endpoint
+app.get("/all-users", (req, res) => {
     // Call getUsers from data
-    data.getUsers((user_collection) => {
-        res.json(user_collection);
+    data.getAllUsers((users) => {
+        res.json(users);
     });
 });
 

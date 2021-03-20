@@ -35,11 +35,31 @@ body {
 
 .title_row .subtitle {
     text-align: center;
-    font-size: 60px;
+    font-size: 50px;
     font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 hr {
     border: #F5F5F5 3px solid;
     border-radius: 5px;
+}
+
+#minor {
+    width: 25%;
+    border: #F5F5F5 1px solid;
+}
+
+.links_row .links_header {
+    margin-top: 70px;
+    margin-bottom: 35px;
+    font-size: 25px;
+    text-align: center;
+    color:#F5F5F5;
+}
+
+.links_row .page_links {
+    margin-top: 35px;
+    margin-bottom: 45px;
+    font-size: 20px;
+    text-align: center;
 }

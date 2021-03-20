@@ -60,18 +60,18 @@ exports.validateAdmin = (email, password, callback) => {
 
 
 // Export getUsers function, displaying public user details
-exports.getUsers = (callback) => {
+exports.getAllUsers = (callback) => {
     // Create SQL statement
     var sql = `
         SELECT
-            users.id,
-            users.email,
-            credentials.password
+          u.id,
+          u.email
         FROM
-            users,
-            credentials
+          users u
         WHERE
-            users.id = credentials.user_id
+          u.email != 'ROOT'
+          AND
+          u.id != 1
         `;
     // Execute query. Return all
     db.all(sql, (err, rows) => {
@@ -80,18 +80,16 @@ exports.getUsers = (callback) => {
             return console.error(err.message);
         }
         // Create an array of users
-        var user_collection = [];
+        var users = [];
         // Create loop through the rows to build user objects
         for (var row of rows) {
-            // Create credentials object
-            var credential = new library.User(row.password);
             // Create user object
-            var user_detail = new library.User(row.id, row.email, row.access);
+            var user = new library.User(row.id, row.email);
             // Add user to created array
-            user_collection.push(user_detail);
+            users.push(user);
         }
         // Execute callback function
-        callback(user_collection);
+        callback(users);
     });
 };
 

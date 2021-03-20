@@ -20,22 +20,20 @@
             <tr ng-repeat = "user in users">
                 <td>{{ user.id }}</td>
                 <td>{{ user.email }}</td>
-                <td><input type="button" ng-click="selectUser(user.id)" value="Select"></td>
+                <td><input type="button" ng-click="selectUser(user.email)" value="Select"></td>
             </tr>
         </table>
         <div id="selected">
-            <h2>{{ selectedUser.email }}</h2>
-            <h3>User</h3>
+            <h3>User: {{ selectedUser.email }}</h3>
             <table border="1">
                 <tr>
                     <td>User ID</td>
                     <td>User Email</td>
-                    <td>Access Level</td>
                 </tr>
-                <tr ng-repeat = "detail in selectedUser.details">
-                    <td>{{ detail.id }}</td>
-                    <td>{{ detail.email }}</td>
-                    <td>{{ detail.access }}</td>
+                <tr>
+                    <td>{{ selectedUser.id }}</td>
+                    <td>{{ selectedUser.email }}</td>
+                    <td><input type="button" ng-click="deleteUser(selectedUser.email)" value="Delete"></td>
                 </tr>
             </table>
         </div>

@@ -123,7 +123,19 @@ exports.deleteUser = (email, callback) => {
           users
         WHERE
           email = '${email}'
-          ;
+        `;
+    db.exec(sql, (err) => {
+        if (err) {
+            return console.error(err.message);
+        }
+        callback();
+    });
+};
+
+// Export deleteUser callback function, delete user matching parameter
+exports.deleteCredential = (email, callback) => {
+    // sql statement
+    var sql =`
         DELETE FROM
           credentials
         WHERE
@@ -133,7 +145,19 @@ exports.deleteUser = (email, callback) => {
                        users
                      WHERE
                        email = '${email}')
-                       ;
+        `;
+    db.exec(sql, (err) => {
+        if (err) {
+            return console.error(err.message);
+        }
+        callback();
+    });
+};
+
+// Export deleteAccess callback function, delete user matching parameter
+exports.deleteAccess = (email, callback) => {
+    // sql statement
+    var sql =`
         DELETE FROM
           admin_access
         WHERE
@@ -143,8 +167,11 @@ exports.deleteUser = (email, callback) => {
                        users
                      WHERE
                        email = '${email}')
-    `;
+        `;
     db.exec(sql, (err) => {
+        if (err) {
+            return console.error(err.message);
+        }
         callback();
     });
 };

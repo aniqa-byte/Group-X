@@ -31,11 +31,17 @@ app.get("/all-users", (req, res) => {
     });
 });
 
-// Delete User Endpoing /user/:email
+// Delete User Endpoint /user/:email
 app.delete("/user/:email", (req, res) => {
-    // Delete run parameter on data
-    data.deleteUser(req.params.email, () => {
-        res.send("OK");
+    // Delete run parameter on data from admin_access table
+    data.deleteAccess(req.params.email, () => {
+        // Delete run parameter on data from credentials table
+        data.deleteCredential(req.params.email, () => {
+            // Delete run parameter on data from users table
+            data.deleteUser(req.params.email, () => {
+                res.send("OK");
+            });
+        });
     });
 });
 

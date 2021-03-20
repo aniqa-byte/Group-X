@@ -4,8 +4,7 @@
   "description": "Student project library database application",
   "main": "main.js",
   "scripts": {
-    "start": "node main.js",
-    "dev_start": "nodemon main.js",
+    "start": "nodemon main.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

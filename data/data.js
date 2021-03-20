@@ -25,17 +25,12 @@ exports.validateAdmin = (email, password, callback) => {
           aa.user_id = (SELECT
                           c.user_id
                         FROM
-                          credentials c
+                          credentials c,
+                          users u
                         WHERE
                           c.password = '${password}'
                           AND
-                          c.user_id = (SELECT
-                                         u.id
-                                       FROM
-                                         users u
-                                       WHERE
-                                         u.email = '${email}'
-                                         )
+                          u.email = '${email}'
                         )
         `;
     db.get(sql, function(err, row) {

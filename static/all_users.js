@@ -5,15 +5,28 @@ var mainApp = angular.module("mainApp", []);
 
 // Initiate the controller app
 mainApp.controller("usersController", ($scope, $http) => {
+    // Hides selected sub table data
+    document.getElementById("selected").style.display="none";
 
     $http.get('/all-users').then((response) => {
         $scope.users = response.data;
     });
 
-    $scope.selectUser = (id) => {
-        // Retrieve user
-        $http.get("/user/" + id).then((response) => {
+    $scope.selectUser = (email) => {
+        // Call endpoint retrieve user
+        $http.get("/user/" + email).then((response) => {
             $scope.selectedUser = response.data;
+            // Display selected content within div
+            document.getElementById("selected").style.display="block";
         });
     }
+
+    $scope.deleteUser = (email) => {
+        // Call endpoint retrieve user
+        $http.delete("/user/" + email).then(() => {
+            $http.get("/all-users").then((response) => {
+                $scope.users = response.data;
+            });
+        });
+    };
 });

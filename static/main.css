@@ -21,6 +21,14 @@ hr {
 
 .box {
     background: #CD92B7;
+    width: 80%;
+    margin: 80px auto;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.home_box {
+    background: #CD92B7;
     width: 50%;
     margin: 80px auto;
     padding: 15px;
@@ -152,4 +160,25 @@ fieldset {
     font-weight: 100;
     flex-basis: auto;
     margin-inline-start: 25%;
+}
+
+.selected_table {
+    float: right;
+    width: 20%;
+    padding: 0 15px 20px 20px;
+    margin-left: 20px;
+    /*border: 10px solid #FFF;*/
+}
+
+.all_users_table {
+    float: left;
+    width: 60%;
+    position: relative;
+    font-size: 15px;
+    line-height: 1.7;
+    /*border: 10px solid #FFF;*/
+}
+
+table {
+    color: black;
 }

@@ -4,29 +4,70 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project Home Page</title>
+    <title>Home</title>
     <link href="./main.css" rel="stylesheet" />
 </head>
 <body>
     <div class="box">
-        <div class="logo_row">
-            Group X
+        <div class="header">
+            <div class="header_top">
+                <div class="title_row">
+                    <h1>Reader App</h1>
+                    <p>Group-X Project</p>
+                </div>
+            </div>
+            <div class="menu_row">
+                <ul id="menu">
+                    <li class="live"><a href="./index.html">Home</a></li>
+                    <li><a href="./books_dashboard.html">Books</a></li>
+                    <li><a href="./users_dashboard.html">Users</a></li>
+                </ul>
+            </div>
         </div>
-        <div class="title_row">
-            <h1 class="title">
-                Software Development<br>Group Project
-            </h1>
-            <p class="subtitle">SPRINT 3. TheReadables<br>Prototype</p>
-        </div>
-        <hr>
-        <div class="links_row">
-            <h3 class="links_header">
-                Important Initial Web Fragments:
-            </h3>
-            <hr id="minor">
-            <h5 class="page_links">
-                <a href="./users_dashboard.html">Users Dashboard</a>     |     <a href="./books_dashboard.html">Books Dashboard</a>
-            </h5>
+        <div class=site_content>
+            <div class="sidebar">
+                <h3 id="featured_list"></h3>
+                <ul>
+                    <li><a href="#">Book 1</a></li>
+                    <li><a href="#">Book 2</a></li>
+                    <li><a href="#">Book 3</a></li>
+                    <li><a href="#">Book 4</a></li>
+                </ul>
+            </div>
+            <div class="main">
+                <section id="_register">
+                    <form action="/#" id="register_form" method="POST" autocomplete="off">
+                        <legend id="register_login">
+                            <fieldset>Register</fieldset>
+                            <div class="form_box">
+                                <label for="email">Email</label>
+                                <input class="email" type="email" autocomplete="off" />
+                            </div>
+                            <div class="form_box">
+                                <label for="pass">Password</label>
+                                <input class="pass" type="password" autocomplete="off" />
+                            </div>
+                            <div class="form_box"><button>Register</button></div>
+                        </legend>
+                    </form>
+                </section>
+                <section id="_login">
+                    <form action="/#" id="login_form" method="POST" autocomplete="off">
+                        <legend id="register_login">
+                            <fieldset>Login</fieldset>
+                            <div class="form_box">
+                                <label for="email">Email</label>
+                                <input class="email" type="email" autocomplete="off" />
+                            </div>
+                            <div class="form_box">
+                                <label for="pass">Password</label>
+                                <input class="pass" type="password" autocomplete="off" />
+                            </div>
+                            <div class="form_box"><button>Login</button></div>
+                        </legend>
+                    </form>
+                </section>
+            </div>
         </div>
     </div>
 </body>

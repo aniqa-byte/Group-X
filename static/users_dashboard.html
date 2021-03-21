@@ -8,34 +8,55 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.js"></script>
     <script src="library.js"></script>
     <script src="users_dashboard.js"></script>
+    <link href="./main.css" rel="stylesheet" />
 </head>
 <body>
-    <h1>All Users</h1>
-    <div ng-app="mainApp" ng-controller="usersController">
-        <table border=1>
-            <tr>
-                <th>User ID</th>
-                <th>User Email</th>
-            </tr>
-            <tr ng-repeat = "user in users">
-                <td>{{ user.id }}</td>
-                <td>{{ user.email }}</td>
-                <td><input type="button" ng-click="selectUser(user.email)" value="Select"></td>
-            </tr>
-        </table>
-        <div id="selected">
-            <h3>User: {{ selectedUser.email }}</h3>
-            <table border="1">
-                <tr>
-                    <td>User ID</td>
-                    <td>User Email</td>
-                </tr>
-                <tr>
-                    <td>{{ selectedUser.id }}</td>
-                    <td>{{ selectedUser.email }}</td>
-                    <td><input type="button" ng-click="deleteUser(selectedUser.email)" value="Delete"></td>
-                </tr>
-            </table>
+    <div class="box">
+        <div class="header">
+            <div class="header_top">
+                <div class="title_row">
+                    <h1>Reader App</h1>
+                    <p>Group-X Project</p>
+                </div>
+            </div>
+            <div class="menu_row">
+                <ul id="menu">
+                    <li class="live"><a href="./index.html">Home</a></li>
+                    <li><a href="./books_dashboard.html">Books</a></li>
+                    <li><a href="./users_dashboard.html">Users</a></li>
+                </ul>
+            </div>
+        </div>
+        <hr>
+        <div class=site_content>
+            <h1>All Users</h1>
+            <div ng-app="mainApp" ng-controller="usersController" class="all_users_table">
+                <table border=1>
+                    <tr>
+                        <th>User ID</th>
+                        <th>User Email</th>
+                    </tr>
+                    <tr ng-repeat = "user in users">
+                        <td>{{ user.id }}</td>
+                        <td>{{ user.email }}</td>
+                        <td><input type="button" ng-click="selectUser(user.email)" value="Select"></td>
+                    </tr>
+                </table>
+                <div id="selected" class="selected_table">
+                    <h3>User: {{ selectedUser.email }}</h3>
+                    <table border="1">
+                        <tr>
+                            <td>User ID</td>
+                            <td>User Email</td>
+                        </tr>
+                        <tr>
+                            <td>{{ selectedUser.id }}</td>
+                            <td>{{ selectedUser.email }}</td>
+                            <td><input type="button" ng-click="deleteUser(selectedUser.email)" value="Delete"></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 </body>

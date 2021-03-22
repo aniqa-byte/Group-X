@@ -15,6 +15,9 @@ var app = express();
 // Add static files location
 app.use(express.static("static"));
 
+// Add JSON parsin for incoming data
+app.use(express.json());
+
 // Add /user endpoint
 app.get("/user/:email", (req, res) => {
     // Call getUser from data
@@ -28,6 +31,14 @@ app.get("/all-users", (req, res) => {
     // Call getUsers from data
     data.getAllUsers((users) => {
         res.json(users);
+    });
+});
+
+// Add /user post endpoint
+app.post("/user", (req, res) => {
+    // Call register on data
+    data.registerUser(req.body, () => {
+        res.send("OK");
     });
 });
 

@@ -5,10 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.js"></script>
+    <script src="library.js"></script>
+    <script src="index.js"></script>
     <link href="./main.css" rel="stylesheet" />
 </head>
 <body>
-    <div class="home_box">
+    <div class="home_box" ng-app="mainApp" ng-controller="homeController">
         <div class="header">
             <div class="header_top">
                 <div class="title_row">
@@ -42,13 +45,13 @@
                             <fieldset>Register</fieldset>
                             <div class="form_box">
                                 <label for="email">Email</label>
-                                <input class="email" type="email" autocomplete="off" />
+                                <input class="email" type="text" ng-model="register_user.email" autocomplete="off" />
                             </div>
                             <div class="form_box">
-                                <label for="pass">Password</label>
-                                <input class="pass" type="password" autocomplete="off" />
+                                <label for="password">Password</label>
+                                <input class="password" type="text" ng-model="register_user.password" autocomplete="off" />
                             </div>
-                            <div class="form_box"><button>Register</button></div>
+                            <div class="form_box"><input type="button" ng-click="registerUser()" value="Register"></div>
                         </legend>
                     </form>
                 </section>
@@ -61,8 +64,8 @@
                                 <input class="email" type="email" autocomplete="off" />
                             </div>
                             <div class="form_box">
-                                <label for="pass">Password</label>
-                                <input class="pass" type="password" autocomplete="off" />
+                                <label for="password">Password</label>
+                                <input class="password" type="password" autocomplete="off" />
                             </div>
                             <div class="form_box"><button>Login</button></div>
                         </legend>

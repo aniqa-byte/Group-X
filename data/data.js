@@ -115,6 +115,33 @@ exports.getUser = (email, callback) => {
         });
 };
 
+exports.registerUser = (user, callback) => {
+    // Create SQL insert statement
+    var sql = `INSERT INTO users VALUES('${user.email}', ${user.id})`;
+    // Execute SQL insert statement
+    db.exec(sql, (err) => {
+        if (err) {
+            return console.error(err.message);
+        }
+        // Create SQL insert statement
+        sql = `INSERT INTO credentials VALUES('${user.password}', '${user.id}')`;
+        // Execute SQL insert statement
+        db.exec(sql, (err) => {
+            if (err) {
+                return console.error(err.message);
+            }
+            // Create SQL insert statement
+            sql = `INSERT INTO admin_access VALUES(0,'${user.id}')`
+            db.exec(sql, (err) => {
+                if (err) {
+                    return console.error(err.message);
+                }
+                callback();
+            });
+        });
+    });
+};
+
 // Export deleteUser callback function, delete user matching parameter
 exports.deleteUser = (email, callback) => {
     // sql statement

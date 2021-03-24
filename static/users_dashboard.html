@@ -42,17 +42,34 @@
                         <td><input type="button" ng-click="selectUser(user.email)" value="Select"></td>
                     </tr>
                 </table>
+                <hr><br>
                 <div id="selected" class="selected_table">
                     <h3>User: {{ selectedUser.email }}</h3>
                     <table border="1">
                         <tr>
-                            <td>User ID</td>
-                            <td>User Email</td>
+                            <th>User ID</th>
+                            <th>User Email</th>
                         </tr>
                         <tr>
                             <td>{{ selectedUser.id }}</td>
                             <td>{{ selectedUser.email }}</td>
                             <td><input type="button" ng-click="deleteUser(selectedUser.email)" value="Delete"></td>
+                        </tr>
+                    </table>
+                    <hr>
+                    <h4>Update User Details</h4>
+                    <table>
+                        <th>User</th>
+                        <th>{{ selectedUser.id }}</th>
+                        <tr>
+                            <td>Update Email:</td>
+                            <td><input type="text" ng-model="update_email.email"></td>
+                            <td><input type="button" ng-click="updateUserEmail(selectedUser.id)" value="Update"></td>
+                        </tr>
+                        <tr>
+                            <td>Update Password:</td>
+                            <td><input type="text" ng-model="update_password.password"></td>
+                            <td><input type="button" ng-click="updateUserPass(selectedUser.id)" value="Update"></td>
                         </tr>
                     </table>
                 </div>

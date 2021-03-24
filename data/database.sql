@@ -9,6 +9,7 @@ INSERT INTO users VALUES('test1@email.com',2);
 INSERT INTO users VALUES('test2@email.com',3);
 INSERT INTO users VALUES('test3@email.com',4);
 INSERT INTO users VALUES('test4@email.com',1616446450377);
+INSERT INTO users VALUES('createduser1@email.com',1616619483785);
 CREATE TABLE credentials (
     password TEXT,
     user_id INTEGER (255),
@@ -19,6 +20,7 @@ INSERT INTO credentials VALUES('AAA111',2);
 INSERT INTO credentials VALUES('BBB222',3);
 INSERT INTO credentials VALUES('CCC333',4);
 INSERT INTO credentials VALUES('password1',1616446450377);
+INSERT INTO credentials VALUES('Pass123',1616619483785);
 CREATE TABLE admin_access (
     access INTEGER (1),
     user_id INTEGER (255),
@@ -29,6 +31,7 @@ INSERT INTO admin_access VALUES(1,2);
 INSERT INTO admin_access VALUES(0,3);
 INSERT INTO admin_access VALUES(0,4);
 INSERT INTO admin_access VALUES(0,1616446450377);
+INSERT INTO admin_access VALUES(0,1616619483785);
 CREATE TABLE books (
     title VARCHAR (50) PRIMARY KEY,
     author VARCHAR (50),

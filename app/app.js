@@ -96,6 +96,10 @@ app.get("/all-genre", (req, res) => {
     });
 });
 
+app.get("*", (req, res) => {
+    res.send("404 error page");
+});
+
 // Initiate listen on port 3000
 app.listen(3000, (err) => {
     if (err) {

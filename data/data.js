@@ -203,6 +203,24 @@ exports.deleteAccess = (email, callback) => {
     });
 };
 
+// Export updateUser callback function, where user input matches id parameter
+exports.updateUserEmail = (user, callback) => {
+    var sql = `
+        UPDATE
+            users
+        SET
+            email = '${user.email}'
+        WHERE
+            id = ${user.id}
+        `;
+    db.exec(sql, (err) => {
+        if (err) {
+            return console.error(err.message);
+        }
+        callback();
+    });
+};
+
 // Export getBookItems callback function, retrieving all open book items
 exports.getBookItems = (callback) => {
     // SQL statement

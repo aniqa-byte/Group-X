@@ -29,4 +29,21 @@ mainApp.controller("usersController", ($scope, $http) => {
             });
         });
     };
+
+    $scope.update_email = new User("", "");
+
+    // Sends a put message to update the data location
+    $scope.updateUserEmail = () => {
+        console.log($scope.update_email)
+        // Sends a put put message to the users endpoint
+        $http.put("/user", $scope.update_email).then((response) => {
+            console.log("email updated");
+            $scope.update_email = new User("", "");
+            response.send("OK")
+            // Refresh list of users
+            $http.get("/users").then((response) => {
+                $scope.users = response.data;
+            });
+        });
+    };
 });

@@ -115,6 +115,28 @@ exports.getUser = (email, callback) => {
         });
 };
 
+exports.getUserID = (id, callback) => {
+    // Create SQL statement
+    var sql = `
+        SELECT
+            u.id
+        FROM
+            users u
+        WHERE
+            u.id = '${id}'
+        `;
+    // Execute query. Returning user row matching email.
+    db.get(sql, (err, row) => {
+            if (err) {
+                return console.error(err.message);
+            }
+            // Create a user object
+            var user = new library.User(row.id);
+            // Return profile
+            callback(user);
+        });
+};
+
 exports.registerUser = (user, callback) => {
     // Create SQL insert statement
     var sql = `INSERT INTO users VALUES('${user.email}', ${user.id})`;
@@ -217,7 +239,7 @@ exports.updateUserEmail = (user, callback) => {
         if (err) {
             return console.error(err.message);
         }
-        callback();
+        callback(user);
     });
 };
 

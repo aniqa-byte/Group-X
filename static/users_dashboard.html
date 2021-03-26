@@ -59,13 +59,12 @@
                     <hr>
                     <h4>Update User Details</h4>
                     <table>
-                        <th>User</th>
-                        <th>{{ selectedUser.id }}</th>
+                        <th>User ID</th>
+                        <th> Update Email</th>
                         <tr>
-                            <td>Update Email:</td>
-                            <input type="hidden" ng-value="{{ selectedUser.id }}" />
+                            <td>{{ selectedUser.id }}</td>
                             <td><input type="text" ng-model="update_email.email" /></td>
-                            <td><input type="button" ng-click="updateUserEmail()" value="Update"></td>
+                            <td><input type="button" ng-click="updateUserEmail(selectedUser.id, update_email.email)" value="Update"></td>
                         </tr>
                         <tr>
                             <td>Update Password:</td>

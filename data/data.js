@@ -203,7 +203,7 @@ exports.deleteAccess = (email, callback) => {
     });
 };
 
-// Export updateUser callback function, where user input matches id parameter
+// Export updateUserEmail email callback function, where user input matches id parameter
 exports.updateUserEmail = (user, callback) => {
     var sql = `
         UPDATE
@@ -212,6 +212,24 @@ exports.updateUserEmail = (user, callback) => {
             email = '${user.email}'
         WHERE
             id = ${user.id}
+        `;
+    db.exec(sql, (err) => {
+        if (err) {
+            return console.error(err.message);
+        }
+        callback(user);
+    });
+};
+
+// Export updateUserPass password callback function, where user input matches id parameter
+exports.updateUserPass = (user, callback) => {
+    var sql = `
+        UPDATE
+            credentials
+        SET
+            password = '${user.password}'
+        WHERE
+            user_id = ${user.id}
         `;
     db.exec(sql, (err) => {
         if (err) {

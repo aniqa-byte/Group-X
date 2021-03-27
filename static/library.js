@@ -24,6 +24,18 @@ class User_access {
     }
 }
 
+class Credential {
+    // access level - default non-admin
+    id;
+    // password
+    password;
+
+    constructor(id, password) {
+        this.id = id;
+        this.password = password;
+    }
+}
+
 class Book {
     // Item title
     title;

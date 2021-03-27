@@ -50,6 +50,14 @@ app.put("/update-email", (req, res) => {
     });
 });
 
+// Add /user post endpoint
+app.put("/update-pass", (req, res) => {
+    // Call register on data
+    data.updateUserPass(req.body, () => {
+        res.send("OK");
+    });
+});
+
 // Delete User Endpoint /user/:email
 app.delete("/user/:email", (req, res) => {
     // Delete run parameter on data from admin_access table

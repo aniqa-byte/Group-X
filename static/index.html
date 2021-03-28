@@ -49,14 +49,14 @@
                             </div>
                             <div class="form_box">
                                 <label for="password">Password</label>
-                                <input class="password" type="text" ng-model="register_user.password" autocomplete="off" />
+                                <input type="password" class="password" ng-model="register_user.password" autocomplete="off" max-length ="10" />
                             </div>
                             <div class="form_box"><input type="button" ng-click="registerUser()" value="Register"></div>
                         </legend>
                     </form>
                 </section>
                 <section id="_login">
-                    <form action="/#" id="login_form" method="POST" autocomplete="off">
+                    <form action="/#" id="login_form" autocomplete="off">
                         <legend id="register_login">
                             <fieldset>Login</fieldset>
                             <div class="form_box">

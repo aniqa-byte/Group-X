@@ -12,8 +12,8 @@ mainApp.controller("homeController", ($scope, $http) => {
 
     $scope.registerUser = () => {
         $http.post("/user", $scope.register_user).then(() => {
-            $scope.register_user = new ("", "", "");
-            id = undefined;
+            console.log(`User created - id: ${$scope.register_user.id}; email: ${$scope.register_user.email}`)
+            $scope.register_user = new User("", "", "");
             // TODO registered user alert
         });
     };

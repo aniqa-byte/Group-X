@@ -21,17 +21,17 @@
             </div>
             <div class="menu_row">
                 <ul id="menu">
-                    <li class="live"><a href="./index.html">Home</a></li>
+                    <li><a href="./index.html">Home</a></li>
                     <li><a href="./books_dashboard.html">Books</a></li>
-                    <li><a href="./users_dashboard.html">Users</a></li>
+                    <li class="live"><a href="./users_dashboard.html">Users</a></li>
                 </ul>
             </div>
         </div>
         <hr>
         <div class=site_content>
             <h1>All Users</h1>
-            <div ng-app="mainApp" ng-controller="usersController" class="all_users_table">
-                <table border=1>
+            <div ng-app="mainApp" ng-controller="usersController" class="all_users_table" style="overflow-x: auto;">
+                <table class="dashboard">
                     <tr>
                         <th>User ID</th>
                         <th>User Email</th>
@@ -45,7 +45,7 @@
                 <hr><br>
                 <div id="selected" class="selected_table">
                     <h3>User: {{ selectedUser.email }}</h3>
-                    <table border="1">
+                    <table class="selected_dashboard">
                         <tr>
                             <th>User ID</th>
                             <th>User Email</th>
@@ -58,7 +58,7 @@
                     </table>
                     <hr>
                     <h4>Update User Details</h4>
-                    <table>
+                    <table class="selected_dashboard">
                         <th>User ID:</th>
                         <th>{{ selectedUser.id }}</th>
                         <tr>

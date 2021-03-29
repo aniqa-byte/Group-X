@@ -21,17 +21,25 @@
             </div>
             <div class="menu_row">
                 <ul id="menu">
-                    <li class="live"><a href="./index.html">Home</a></li>
-                    <li><a href="./books_dashboard.html">Books</a></li>
+                    <li><a href="./index.html">Home</a></li>
+                    <li class="live"><a href="./books_dashboard.html">Books</a></li>
                     <li><a href="./users_dashboard.html">Users</a></li>
                 </ul>
             </div>
         </div>
         <hr>
         <div class=site_content>
-            <h1>All Books</h1>
-            <div ng-app="mainApp" ng-controller="booksController">
-                <table border=1>
+            <div class="genre_row">
+                <ul id="genre_menu">
+                    <li><a href="./books_dashboard.html">Genre 1</a></li>
+                    <li><a href="./books_dashboard.html">Genre 2</a></li>
+                    <li><a href="./books_dashboard.html">Genre 3</a></li>
+                    <li><a href="./books_dashboard.html">Genre 4</a></li>
+                </ul>
+            </div>
+            <h1 id="books_header">All Books</h1>
+            <div ng-app="mainApp" ng-controller="booksController" style="overflow-x: auto;">
+                <table class="dashboard">
                     <tr>
                         <th>Book Title</th>
                         <th>Author</th>
@@ -48,7 +56,7 @@
                 <div id="selected" class="selected_table">
                     <h2>{{ selectedBook.title }}</h2>
                     <h3>Book Details</h3>
-                    <table border=1>
+                    <table class="selected_dashboard">
                         <tr>
                             <th>Book Link</th>
                             <th>Book Description</th>

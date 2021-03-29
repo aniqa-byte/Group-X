@@ -24,6 +24,18 @@ exports.User_access = class {
     }
 }
 
+exports.Credential = class {
+    // user id
+    id;
+    // password
+    password;
+
+    constructor(id, password) {
+        this.id = id;
+        this.password = password;
+    }
+}
+
 exports.Book = class {
     // Item title
     title;

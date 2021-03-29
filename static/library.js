@@ -25,7 +25,7 @@ class User_access {
 }
 
 class Credential {
-    // access level - default non-admin
+    // user id
     id;
     // password
     password;

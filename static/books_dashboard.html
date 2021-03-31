@@ -28,15 +28,7 @@
             </div>
         </div>
         <hr>
-        <div class=site_content>
-            <div class="genre_row">
-                <ul id="genre_menu">
-                    <li><a href="./books_dashboard.html">Genre 1</a></li>
-                    <li><a href="./books_dashboard.html">Genre 2</a></li>
-                    <li><a href="./books_dashboard.html">Genre 3</a></li>
-                    <li><a href="./books_dashboard.html">Genre 4</a></li>
-                </ul>
-            </div>
+        <div class="site_content">
             <h1 id="books_header">All Books</h1>
             <div ng-app="mainApp" ng-controller="booksController" style="overflow-x: auto;">
                 <table class="dashboard">
@@ -44,6 +36,7 @@
                         <th>Book Title</th>
                         <th>Author</th>
                         <th>Genre</th>
+                        <th><select name="genres" ng-model="selectedGenre.genre" ng-options="genre as book.genre for book in book_genres" ng-change="updateGenreSelection(book.genre)"></select></th>
                     </tr>
                     <tr ng-repeat = "book in books">
                         <td>{{ book.title }}</td>

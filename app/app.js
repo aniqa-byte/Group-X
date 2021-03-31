@@ -105,9 +105,9 @@ app.get("/genre/:genre", (req, res) => {
 });
 
 // Add /all-genre endpoint
-app.get("/all-genre", (req, res) => {
+app.get("/all-book-genres", (req, res) => {
     // Call getAllGenre from data
-    data.getAllGenre((genre_types) => {
+    data.getAllBookGenres((genre_types) => {
         res.json(genre_types);
     });
 });

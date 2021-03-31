@@ -295,34 +295,26 @@ exports.getBook = (title, callback) => {
         });
 };
 
-// Export getAllGenre function, display all category types
-exports.getAllGenre = (callback) => {
-    // Create SQL statement
+exports.getAllBookGenres = (callback) => {
     var sql = `
-        SELECT
-            bg.genre,
-            bg.genre_description
-        FROM book_genre bg
+        SELECT DISTINCT
+          genre
+        FROM
+          books
         `;
-    // Execute query. Return all book genre types
     db.all(sql, (err, rows) => {
-            // Error handling
-            if (err) {
-                return console.error(err.message);
-            }
-            // Create an array of genre
-            var genre_types = [];
-            // Loop through rows creating Genre objects
-            for (var row of rows) {
-                // Create genre object
-                var genre_type = new library.Book_genre(row.genre, row.genre_description);
-                // Add genre to array
-                genre_types.push(genre_type);
-            }
-            // Execute callback function
-            callback(genre_types);
-        });
-};
+        if (err) {
+            return console.error(err.message);
+        }
+        var genre_types = [];
+        for (var row of rows) {
+            var genre_type = new library.Book_genre (row.genre);
+            genre_types.push(genre_type);
+        }
+        callback(genre_types);
+    });
+
+}
 
 // TODO1: integrate and match with selected book
 // Export getGenre callback function, retrieve selected category

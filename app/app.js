@@ -112,8 +112,10 @@ app.get("/all-genre", (req, res) => {
     });
 });
 
+// Capture 404 errors
 app.get("*", (req, res) => {
-    res.send("404 error page");
+    // Redirect to error page
+    res.sendFile(__dirname + "/ErrorPage.html");
 });
 
 // Initiate listen on port 3000

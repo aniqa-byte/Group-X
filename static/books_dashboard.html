@@ -36,9 +36,9 @@
                         <th>Book Title</th>
                         <th>Author</th>
                         <th>Genre</th>
-                        <th><select name="genres" ng-model="selectedGenre.genre" ng-options="genre as book.genre for book in book_genres" ng-change="updateGenreSelection(book.genre)"></select></th>
+                        <th><select name="genreSelect" ng-model="selectedGenre.genre" ng-options="genre as book.genre for book in book_genres" ng-change="updateGenreSelection()"></select></th>
                     </tr>
-                    <tr ng-repeat = "book in books">
+                    <tr id="books_main" ng-repeat = "book in books">
                         <td>{{ book.title }}</td>
                         <td>{{ book.author }}</td>
                         <td>{{ book.genre }}</td>

@@ -96,19 +96,18 @@ app.get("/all-books", (req, res) => {
     });
 });
 
-// Add /genre endpoint
-app.get("/genre/:genre", (req, res) => {
-    // Call getGenre callback function from data
-    data.getGenre(req.params.genre, (genre_selected) => {
-        res.json(genre_selected);
-    });
-});
-
 // Add /all-genre endpoint
 app.get("/all-book-genres", (req, res) => {
     // Call getAllGenre from data
     data.getAllBookGenres((genre_types) => {
         res.json(genre_types);
+    });
+});
+
+app.get("/books-genre-match/:genre", (req, res) => {
+    // Call getGenre callback function from data
+    data.matchedGenreBooks(req.params.genre, (matched_books) => {
+        res.json(matched_books);
     });
 });
 

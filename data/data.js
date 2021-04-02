@@ -15,22 +15,28 @@ var db = new sqlite3.Database(":memory:", (err) => {
         console.log("Connected to library database.");
     });
 
+// Creating all tables of database
 db.serialize(() => {
+    // User relevant tables
     db.run("CREATE TABLE IF NOT EXISTS users (email TEXT PRIMARY KEY, id INTEGER (255))");
     db.run("CREATE TABLE IF NOT EXISTS credentials (password TEXT, user_id INTEGER (255), FOREIGN KEY (user_id) REFERENCES users (id))");
     db.run("CREATE TABLE IF NOT EXISTS admin_access (access INTEGER (1), user_id INTEGER (255), FOREIGN KEY (user_id) REFERENCES users (id))");
+    // Book relevant tables
     db.run("CREATE TABLE IF NOT EXISTS books (title VARCHAR (50) PRIMARY KEY, author VARCHAR (50), genre VARCHAR (50), FOREIGN KEY (genre) REFERENCES book_genre (genre))");
     db.run("CREATE TABLE IF NOT EXISTS book_details (title VARCHAR (50), item_link TEXT, item_description TEXT, FOREIGN KEY (title) REFERENCES books (title))");
     db.run("CREATE TABLE IF NOT EXISTS book_genre (genre VARCHAR (50) PRIMARY KEY, genre_description TEXT)");
 });
 
+// Inserting all required (test) values
 db.serialize(() => {
+    // Insert of user relevant (test) values
     db.run("INSERT INTO users VALUES('ROOT',1)");
     db.run("INSERT INTO credentials VALUES('ROOT',1)");
     db.run("INSERT INTO admin_access VALUES(1,1)");
     db.run("INSERT INTO users VALUES('test1@email.com',2)");
     db.run("INSERT INTO credentials VALUES('AAA111',2)");
     db.run("INSERT INTO admin_access VALUES(1,2)");
+    // Insert of book relevant (test) values
     db.run("INSERT INTO books VALUES('Title 1','Author 1','Genre 1')");
     db.run("INSERT INTO books VALUES('Title 2','Author 1','Genre 1')");
     db.run("INSERT INTO books VALUES('Title 3','Author 2','Genre 1')");
@@ -171,7 +177,7 @@ exports.registerUser = (user, callback) => {
                 return console.error(err.message);
             }
             // Create SQL insert statement
-            sql = `INSERT INTO admin_access VALUES(0,'${user.id}')`
+            sql = `INSERT INTO admin_access VALUES(0,'${user.id}')`;
             db.exec(sql, (err) => {
                 if (err) {
                     return console.error(err.message);
@@ -254,10 +260,12 @@ exports.updateUserEmail = (user, callback) => {
             id = ${user.id}
         `;
     db.exec(sql, (err) => {
-        if (err) {
+        try {
+            callback(user);
+        }
+        catch(err){
             return console.error(err.message);
         }
-        callback(user);
     });
 };
 
@@ -272,10 +280,12 @@ exports.updateUserPass = (user, callback) => {
             user_id = ${user.id}
         `;
     db.exec(sql, (err) => {
-        if (err) {
+        try{
+            callback(user);
+        }
+        catch(err) {
             return console.error(err.message);
         }
-        callback(user);
     });
 };
 
@@ -325,14 +335,17 @@ exports.getBook = (title, callback) => {
     `;
     // Execute query. Return book matching title entry
     db.get(sql, (err, row) => {
-            if (err) {
-                return console.error(error.message);
-            }
+        // Error handling method
+        try {
             // Create a book object
             var book_item = new library.Book_details(row.item_link, row.item_description, row.title);
             // Return selected
             callback(book_item);
-        });
+        }
+        catch(err) {
+            return console.error(err.message);
+        }
+    });
 };
 
 exports.getAllBookGenres = (callback) => {

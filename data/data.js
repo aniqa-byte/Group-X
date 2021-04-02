@@ -38,16 +38,16 @@ db.serialize(() => {
     db.run("INSERT INTO admin_access VALUES(1,2)");
     // Insert of book relevant (test) values
     db.run("INSERT INTO books VALUES('Title 1','Author 1','Genre 1')");
-    db.run("INSERT INTO books VALUES('Title 2','Author 1','Genre 1')");
-    db.run("INSERT INTO books VALUES('Title 3','Author 2','Genre 1')");
-    db.run("INSERT INTO books VALUES('Title 4','Author 3','Genre 2')");
-    db.run("INSERT INTO books VALUES('Title 5','Author 4','Genre 3')");
+    db.run("INSERT INTO books VALUES('Angular JS','Author 1','Genre 1')");
+    db.run("INSERT INTO books VALUES('SQLite','Author 2','Genre 1')");
+    db.run("INSERT INTO books VALUES('Node JS','Author 3','Genre 2')");
+    db.run("INSERT INTO books VALUES('Python','Author 4','Genre 3')");
     db.run("INSERT INTO books VALUES('Title 6','Author 4','Genre 3')");
     db.run("INSERT INTO book_details VALUES('Title 1','https://www.google.co.uk','1Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.')");
-    db.run("INSERT INTO book_details VALUES('Title 2','https://www.google.co.uk','2Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.')");
-    db.run("INSERT INTO book_details VALUES('Title 3','https://www.google.co.uk','3Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.')");
-    db.run("INSERT INTO book_details VALUES('Title 4','https://www.google.co.uk','4Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.')");
-    db.run("INSERT INTO book_details VALUES('Title 5','https://www.google.co.uk','5Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.')");
+    db.run("INSERT INTO book_details VALUES('Angular JS','https://angularjs.org/','2Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.')");
+    db.run("INSERT INTO book_details VALUES('SQLite','https://sqlite.org/index.html','3Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.')");
+    db.run("INSERT INTO book_details VALUES('Node JS','https://nodejs.org/en/docs/','4Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.')");
+    db.run("INSERT INTO book_details VALUES('Python','https://docs.python.org/3/','5Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.')");
     db.run("INSERT INTO book_details VALUES('Title 6','https://www.google.co.uk','6Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.')");
     db.run("INSERT INTO book_genre VALUES('Genre 1','Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.')");
     db.run("INSERT INTO book_genre VALUES('Genre 2','Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.')");
@@ -95,6 +95,35 @@ exports.validateAdmin = (email, password, callback) => {
     });
 };
 
+exports.validateUser = (email, password, callback) => {
+
+    let sql = `
+        SELECT COUNT(*) AS record_validated
+        FROM users u
+          INNER JOIN credentials c
+            ON u.id=c.user_id
+        WHERE
+          u.email = '${email}'
+          AND
+          c.password = '${password}'
+        GROUP BY u.email
+    `;
+    db.get(sql, (err, row) => {
+
+        try {
+            let validate = row.record_validated
+            if (validate === 1) {
+                return console.log("Validated User");
+            } else {
+                return console.log("Not a user");
+            }
+        }
+        catch(err) {
+            return console.error(err.message);
+        }
+        callback(validate);
+    });
+}
 
 // Export getUsers function, displaying public user details
 exports.getAllUsers = (callback) => {

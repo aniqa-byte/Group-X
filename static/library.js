@@ -36,6 +36,18 @@ class Credential {
     }
 }
 
+class Login {
+    // user email
+    email;
+    // password
+    password;
+
+    constructor(email, password) {
+        this.email = email;
+        this.password = password;
+    }
+}
+
 class Book {
     // Item title
     title;

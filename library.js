@@ -36,6 +36,18 @@ exports.Credential = class {
     }
 }
 
+exports.Login = class {
+    // user email
+    email;
+    // password
+    password;
+
+    constructor(email, password) {
+        this.email = email;
+        this.password = password;
+    }
+}
+
 exports.Book = class {
     // Item title
     title;

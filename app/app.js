@@ -34,6 +34,12 @@ app.get("/all-users", (req, res) => {
     });
 });
 
+app.get("/validate-login/:email/:password", (req, res) => {
+    data.validateUser(req.params.email, req.params.password, (validate) => {
+        res.json(validate);
+    });
+});
+
 // Add /user post endpoint
 app.post("/user", (req, res) => {
     // Call register on data

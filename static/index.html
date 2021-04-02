@@ -40,7 +40,7 @@
             </div>
             <div class="main_content">
                 <section id="_register">
-                    <form action="/#" id="register_form" method="POST" autocomplete="off">
+                    <form id="register_form" autocomplete="off">
                         <legend id="register_login">
                             <fieldset>Register</fieldset>
                             <div class="form_box">
@@ -49,25 +49,25 @@
                             </div>
                             <div class="form_box">
                                 <label for="password">Password</label>
-                                <input type="password" class="password" ng-model="register_user.password" autocomplete="off" max-length ="10" />
+                                <input type="password" class="password" ng-model="register_user.password" autocomplete="off" />
                             </div>
                             <div class="form_box"><input type="button" ng-click="registerUser()" value="Register"></div>
                         </legend>
                     </form>
                 </section>
                 <section id="_login">
-                    <form action="/#" id="login_form" autocomplete="off">
+                    <form id="login_form" autocomplete="off">
                         <legend id="register_login">
                             <fieldset>Login</fieldset>
                             <div class="form_box">
                                 <label for="email">Email</label>
-                                <input class="email" type="email" autocomplete="off" />
+                                <input class="email" type="email" ng-model="login_user.email" autocomplete="off" />
                             </div>
                             <div class="form_box">
                                 <label for="password">Password</label>
-                                <input class="password" type="password" autocomplete="off" />
+                                <input class="password" type="password" ng-model="login_user.password" autocomplete="off" />
                             </div>
-                            <div class="form_box"><button>Login</button></div>
+                            <div class="form_box"><input type="button" ng-click="loginUser()" value="Login"></div>
                         </legend>
                     </form>
                 </section>

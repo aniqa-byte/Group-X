@@ -151,7 +151,7 @@ fieldset {
     color: #444;
 }
 
-.form_box button {
+.form_box button, input[type=button] {
     background-color: #2E5369;
     border: none;
     color: #F5F5F5;
@@ -160,7 +160,7 @@ fieldset {
     font-size: 16px;
     font-weight: 100;
     flex-basis: auto;
-    margin-inline-start: 25%;
+    /* margin-inline-start: 25%; */
 }
 
 .selected_table {

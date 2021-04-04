@@ -124,6 +124,20 @@ app.put("/update-book-genre", (req, res) => {
     });
 });
 
+// Update book item link endpoint
+app.put("/update-book-link", (req, res) => {
+    data.updateBookLink(req.body, () => {
+        res.send("OK");
+    });
+});
+
+// Update book description endpoint
+app.put("/update-book-description", (req, res) => {
+    data.updateBookDescription(req.body, () => {
+        res.send("OK");
+    });
+});
+
 app.get("/books-genre-match/:genre", (req, res) => {
     // Call getGenre callback function from data
     data.matchedGenreBooks(req.params.genre, (matched_books) => {

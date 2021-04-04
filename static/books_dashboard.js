@@ -8,10 +8,19 @@ mainApp.controller("booksController", ($scope, $http) => {
 
     // Hide the "selected" element of the bookcontroller
     document.getElementById("selected").style.display="none";
+    document.getElementById("search_results").style.display="none";
 
     $http.get("/all-books").then((response) => {
         $scope.books = response.data;
     });
+
+    $scope.searchBook = (title) => {
+        $http.get("/search-book/" + title).then((response) => {
+            $scope.searchedBook = response.data;
+
+            document.getElementById("search_results").style.display="block";
+        });
+    };
 
     $http.get("/all-book-genres").then((response) => {
         $scope.book_genres = response.data;

@@ -30,7 +30,43 @@
         <hr>
         <div class="site_content">
             <h1 id="books_header">All Books</h1>
+            <br>
             <div ng-app="mainApp" ng-controller="booksController" style="overflow-x: auto;">
+                <section id="_search">
+                    <form id="search_form" autocomplete="off">
+                        <div class="search_box">
+                            <label for="search">Search Title</label>
+                            <input type="text" ng-model="book_title">
+                            <input type="button" ng-click="searchBook(book_title)" value="Search">
+                        </div>
+                    </form>
+                </section>
+                <br>
+                <div id="search_results">
+                    <table class="dashboard">
+                        <tr>
+                            <td>Book Title: </td>
+                            <td>{{ searchedBook.title }}</td>
+                        </tr>
+                        <tr>
+                            <td>Book Author: </td>
+                            <td>{{ searchedBook.author }}</td>
+                        </tr>
+                        <tr>
+                            <td>Book Genre: </td>
+                            <td>{{ searchedBook.genre }}</td>
+                        </tr>
+                        <tr>
+                            <td>Book Link: </td>
+                            <td>{{ searchedBook.item_link }}</td>
+                        </tr>
+                        <tr>
+                            <td>Book Description: </td>
+                            <td>{{ searchedBook.item_description }}</td>
+                        </tr>
+                    </table>
+                </div>
+                <br>
                 <table class="dashboard">
                     <tr>
                         <th>Book Title</th>
@@ -45,10 +81,11 @@
                         <td><input type="button" ng-click="selectBook(book.title)" value="Select"></td>
                     </tr>
                 </table>
-                <hr><br>
+                <br><hr><br>
                 <div id="selected" class="selected_table">
-                    <h2>{{ selectedBook.title }}</h2>
+                    <h2>Book Title: {{ selectedBook.title }}</h2>
                     <h3>Book Details</h3>
+                    <br>
                     <table class="selected_dashboard">
                         <tr>
                             <th>Book Link</th>

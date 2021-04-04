@@ -79,6 +79,7 @@
                         <td>{{ book.author }}</td>
                         <td>{{ book.genre }}</td>
                         <td><input type="button" ng-click="selectBook(book.title)" value="Select"></td>
+                        <td><input type="button" ng-click="editBook(book.title)" value="Edit" /></td>
                     </tr>
                 </table>
                 <br><hr><br>
@@ -94,6 +95,33 @@
                         <tr>
                             <td><a href="{{ selectedBook.item_link }}" target="_blank">{{ selectedBook.item_link }}</a></td>
                             <td>{{ selectedBook.item_description }}</td>
+                        </tr>
+                    </table>
+                </div>
+                <div id="edit_selected">
+                    <h2>Book Title: {{ book.title }}</h2>
+                    <h3>Update Book Details:</h3>
+                    <br>
+                    <table class="selected dashboard">
+                        <tr>
+                            <td>Delete Title:</td>
+                            <td>{{ editSelected.title }}</td>
+                            <td><input type="button" ng-click="deleteBook(editSelected.title)" value="Delete" /></td>
+                        </tr>
+                        <tr>
+                            <td>Update Genre:</td>
+                            <td><input type="text" ng-model="update_genre.genre" /></td>
+                            <td><input type="button" ng-click="updateGenre(editSelected.title, update_genre.genre)" value="Update" /></td>
+                        </tr>
+                        <tr>
+                            <td>Update Link:</td>
+                            <td><input type="text" ng-model="update_link.item_link" /></td>
+                            <td><input type="button" ng-click="updateLink(editSelected.title, update_link.item_link)" value="Update" /></td>
+                        </tr>
+                        <tr>
+                            <td>Update Description:</td>
+                            <td><input type="text" ng-model="update_description.item_description" /></td>
+                            <td><input type="button" ng-click="updateDescription(editSelected.title, update_description.item_description)" value="Update" /></td>
                         </tr>
                     </table>
                 </div>

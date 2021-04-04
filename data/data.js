@@ -163,16 +163,16 @@ exports.getUser = (email, callback) => {
     // Create SQL statement
     var sql = `
         SELECT
-            u.id,
-            u.email,
-            aa.access
+          u.id,
+          u.email,
+          aa.access
         FROM
-            users u,
-            admin_access aa
+          users u,
+          admin_access aa
         WHERE
-            u.email = '${email}'
-            AND
-            u.id = aa.user_id
+          u.email = '${email}'
+          AND
+          u.id = aa.user_id
         `;
     // Execute query. Returning user row matching email.
     db.get(sql, (err, row) => {
@@ -282,11 +282,11 @@ exports.deleteAccess = (email, callback) => {
 exports.updateUserEmail = (user, callback) => {
     var sql = `
         UPDATE
-            users
+          users
         SET
-            email = '${user.email}'
+          email = '${user.email}'
         WHERE
-            id = ${user.id}
+          id = ${user.id}
         `;
     db.exec(sql, (err) => {
         try {
@@ -302,11 +302,11 @@ exports.updateUserEmail = (user, callback) => {
 exports.updateUserPass = (user, callback) => {
     var sql = `
         UPDATE
-            credentials
+          credentials
         SET
-            password = '${user.password}'
+          password = '${user.password}'
         WHERE
-            user_id = ${user.id}
+          user_id = ${user.id}
         `;
     db.exec(sql, (err) => {
         try{
@@ -323,11 +323,11 @@ exports.getBookItems = (callback) => {
     // SQL statement
     var sql = `
         SELECT
-            b.title,
-            b.author,
-            b.genre
+          b.title,
+          b.author,
+          b.genre
         FROM
-            books b
+          books b
         `;
     // Excecute query. Return all book item details
     db.all(sql, (err, rows) => {
@@ -354,13 +354,13 @@ exports.getBook = (title, callback) => {
     // Create SQL statement
     var sql = `
     SELECT
-        bd.item_link,
-        bd.item_description,
-        bd.title
+      bd.item_link,
+      bd.item_description,
+      bd.title
     FROM
-        book_details bd
+      book_details bd
     WHERE
-        bd.title = '${title}'
+      bd.title = '${title}'
     `;
     // Execute query. Return book matching title entry
     db.get(sql, (err, row) => {
@@ -428,19 +428,39 @@ exports.getAllBookGenres = (callback) => {
 
 }
 
+exports.updateBookGenre = (book, callback) => {
+
+    var sql = `
+        UPDATE
+          books
+        SET
+          genre = '${book.genre}'
+        WHERE
+          title = '${book.title}'
+        `;
+    db.exec(sql, (err) => {
+        try{
+            callback(book);
+        }
+        catch(err) {
+            return console.error(err.message);
+        }
+    });
+}
+
 // Export matchedGenreBooks callback function, retrieve selected category
 exports.matchedGenreBooks = (genre, callback) => {
     // Create sql statement
     var sql = `
-    SELECT
-        books.title,
-        books.author,
-        books.genre
-    FROM
-        books
-    WHERE
-        books.genre = '${genre}'
-    `;
+        SELECT
+          books.title,
+          books.author,
+          books.genre
+        FROM
+          books
+        WHERE
+          books.genre = '${genre}'
+        `;
     // Execute sql query, retrieve category details matching category input
     db.all(sql, (err, row) => {
             // Error handling

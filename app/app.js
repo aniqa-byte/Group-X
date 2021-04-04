@@ -110,6 +110,13 @@ app.get("/all-book-genres", (req, res) => {
     });
 });
 
+// Book search function endpoint
+app.get("/search-book/:title", (req, res) => {
+    data.searchBook(req.params.title, (searched_book) => {
+        res.json(searched_book);
+    });
+});
+
 app.get("/books-genre-match/:genre", (req, res) => {
     // Call getGenre callback function from data
     data.matchedGenreBooks(req.params.genre, (matched_books) => {

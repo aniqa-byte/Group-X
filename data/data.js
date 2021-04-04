@@ -325,9 +325,12 @@ exports.getBookItems = (callback) => {
         SELECT
           b.title,
           b.author,
-          b.genre
-        FROM
-          books b
+          b.genre,
+          bd.item_link,
+          bd.item_description
+        FROM books b
+          INNER JOIN book_details bd
+            ON b.title = bd.title
         `;
     // Excecute query. Return all book item details
     db.all(sql, (err, rows) => {
@@ -340,7 +343,7 @@ exports.getBookItems = (callback) => {
             // Loop through rows creating Book object
             for (var row of rows) {
                 // Create book item object
-                var book = new library.Book(row.title, row.author, row.genre);
+                var book = new library.Book_complete(row.title, row.author, row.genre, row.item_link, row.item_description);
                 // Add book item to array
                 book_collection.push(book);
             }
@@ -435,6 +438,46 @@ exports.updateBookGenre = (book, callback) => {
           books
         SET
           genre = '${book.genre}'
+        WHERE
+          title = '${book.title}'
+        `;
+    db.exec(sql, (err) => {
+        try{
+            callback(book);
+        }
+        catch(err) {
+            return console.error(err.message);
+        }
+    });
+}
+
+exports.updateBookLink = (book, callback) => {
+
+    var sql = `
+        UPDATE
+          book_details
+        SET
+          item_link = '${book.item_link}'
+        WHERE
+          title = '${book.title}'
+        `;
+    db.exec(sql, (err) => {
+        try{
+            callback(book);
+        }
+        catch(err) {
+            return console.error(err.message);
+        }
+    });
+}
+
+exports.updateBookDescription = (book, callback) => {
+
+    var sql = `
+        UPDATE
+          book_details
+        SET
+          item_description = '${book.item_description}'
         WHERE
           title = '${book.title}'
         `;

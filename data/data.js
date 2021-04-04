@@ -377,6 +377,36 @@ exports.getBook = (title, callback) => {
     });
 };
 
+// Export book search sql callback function
+exports.searchBook = (title, callback) => {
+    // Create SQL statement
+    let sql = `
+        SELECT
+          b.title,
+          b.author,
+          b.genre,
+          bd.item_link,
+          bd.item_description
+        FROM books b
+          INNER JOIN book_details bd
+            ON b.title = bd.title
+        WHERE
+          b.title = '${title}'
+        GROUP BY
+          b.title
+          `;
+    db.get(sql, (err, row) => {
+
+        try {
+            var searched_book = new library.Book_complete(row.title, row.author, row.genre, row.item_link, row.item_description)
+            callback(searched_book);
+        }
+        catch (err) {
+            console.error(err.message);
+        }
+    });
+};
+
 exports.getAllBookGenres = (callback) => {
     var sql = `
         SELECT DISTINCT

@@ -89,3 +89,19 @@ exports.Book_genre = class {
         this.genre_description = genre_description;
     }
 }
+
+exports.Book_complete = class {
+    title;
+    author;
+    genre;
+    item_link;
+    item_description;
+
+    constructor(title, author, genre, item_link, item_description) {
+        this.title = title;
+        this.author = author;
+        this.genre = genre;
+        this.item_link = item_link;
+        this.item_description = item_description;
+    }
+}

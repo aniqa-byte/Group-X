@@ -82,10 +82,26 @@ class Book_genre {
     // Genre category
     genre;
     // Gnere category description
-    genre_description
+    genre_description;
 
     constructor(genre, genre_description) {
         this.genre = genre;
         this.genre_description = genre_description;
+    }
+}
+
+class Book_complete {
+    title;
+    author;
+    genre;
+    item_link;
+    item_description;
+
+    constructor(title, author, genre, item_link, item_description) {
+        this.title = title;
+        this.author = author;
+        this.genre = genre;
+        this.item_link = item_link;
+        this.item_description = item_description;
     }
 }

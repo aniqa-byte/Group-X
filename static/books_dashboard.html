@@ -58,7 +58,7 @@
                         </tr>
                         <tr>
                             <td>Book Link: </td>
-                            <td>{{ searchedBook.item_link }}</td>
+                            <td><a href="{{ searchedBook.item_link }}">{{ searchedBook.item_link }}</a></td>
                         </tr>
                         <tr>
                             <td>Book Description: </td>
@@ -120,8 +120,8 @@
                         </tr>
                         <tr>
                             <td>Update Description:</td>
-                            <td><input type="text" ng-model="update_description.item_description" /></td>
-                            <td><input type="button" ng-click="updateDescription(editSelected.title, update_description.item_description)" value="Update" /></td>
+                            <td><input type="text" ng-model="update_descript.item_description" /></td>
+                            <td><input type="button" ng-click="updateDescription(editSelected.title, update_descript.item_description)" value="Update" /></td>
                         </tr>
                     </table>
                 </div>

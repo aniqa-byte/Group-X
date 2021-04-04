@@ -54,7 +54,7 @@ mainApp.controller("booksController", ($scope, $http) => {
             $scope.editSelected = response.data;
             $scope.selectedBook = response.data;
             document.getElementById("edit_selected").style.display="block";
-        })
+        });
     };
 
     $scope.updateGenre = (title, genre) => {
@@ -65,16 +65,28 @@ mainApp.controller("booksController", ($scope, $http) => {
                 $scope.update_genre = new Book_complete ("", "", "", "", "");
                 $scope.books = response.data;
             });
-        })
-    }
+        });
+    };
 
     $scope.updateLink = (title, item_link) => {
-        $scope.update_genre = new Book_complete (title, "", "", item_link, "");
+        $scope.update_link = new Book_complete (title, "", "", item_link, "");
         $http.put("/update-book-link/", $scope.update_link).then(() => {
             console.log("Link Updated: " + $scope.update_link.item_link)
             $http.get("/all-books").then((response) => {
-                $scope.books = response.data;
+                $scope.update_link = new Book_complete ("", "", "", "", "");
+                $scope.books = response.data; // TODO doesnt realtime update dashboard
             });
-        })
-    }
+        });
+    };
+
+    $scope.updateDescription = (title, item_description) => {
+        $scope.update_descript = new Book_complete (title, "", "", "", item_description);
+        $http.put("/update-book-description/", $scope.update_descript).then(() => {
+            console.log("Book Description: " + $scope.update_descript.item_description)
+            $http.get("/all-books").then((response) => {
+                $scope.update_description = new Book_complete ("", "", "", "", "");
+                $scope.books = response.data; // TODO doesnt realtime update dashboard
+            });
+        });
+    };
  });

@@ -491,6 +491,25 @@ exports.updateBookDescription = (book, callback) => {
     });
 }
 
+// Exports createbook callback function, inserting user entry
+exports.createBookEntry = (book, callback) => {
+    var sql = `INSERT INTO books VALUES('${book.title}', '${book.author}', '${book.genre}')`;
+    // Execute SQL insert statement
+    db.exec(sql, (err) => {
+      if (err) {
+        return console.error(err.message);
+      }
+      var sql = `INSERT INTO book_details VALUES('${book.title}', '${book.item_link}', '${book.item_description}')`;
+      // Execute SQL insert statement
+      db.exec(sql, (err) => {
+        if (err) {
+          return console.error(err.message);
+        }
+        callback();
+      });
+    });
+}
+
 // Export matchedGenreBooks callback function, retrieve selected category
 exports.matchedGenreBooks = (genre, callback) => {
     // Create sql statement

@@ -117,6 +117,13 @@ app.get("/search-book/:title", (req, res) => {
     });
 });
 
+// Add book item endpoint
+app.post("/add-book", (req, res) => {
+    data.createBookEntry(req.body, () => {
+        res.send("OK");
+    });
+});
+
 // Update book genre endpoint
 app.put("/update-book-genre", (req, res) => {
     data.updateBookGenre(req.body, () => {

@@ -10,6 +10,7 @@ mainApp.controller("booksController", ($scope, $http) => {
     document.getElementById("selected").style.display="none";
     document.getElementById("edit_selected").style.display="none";
     document.getElementById("search_results").style.display="none";
+    document.getElementById("create_table").style.display="none";
 
     $http.get("/all-books").then((response) => {
         $scope.books = response.data;
@@ -27,6 +28,7 @@ mainApp.controller("booksController", ($scope, $http) => {
         $scope.book_genres = response.data;
     });
 
+    // Ineffective
     $scope.updateGenreSelection = () => {
 
         $scope.selectedGenre = new Book_genre (genre);
@@ -35,6 +37,30 @@ mainApp.controller("booksController", ($scope, $http) => {
             $scope.selectedGenre = new Book_genre ("");
             $scope.books = response.data;
             document.getElementById("books_main").style.display="block";
+        });
+    };
+
+    $scope.openCreateMode = () => {
+
+        document.getElementById("selected").style.display="none";
+        document.getElementById("edit_selected").style.display="none";
+        document.getElementById("search_results").style.display="none";
+        document.getElementById("create_button").style.display="none";
+        document.getElementById("create_table").style.display="block";
+    };
+
+    $scope.createBookEntry = (title, author, genre, item_link, item_description) => {
+
+        $scope.add_book = new Book_complete (title, author, genre, item_link, item_description);
+
+        $http.post("/add-book", $scope.add_book).then(() => {
+            console.log("Successfully added new title:" + $scope.add_book.title);
+            $scope.add_book = new Book_complete ("", "", "", "", "");
+            $http.get("/all-books").then((response) => {
+                $scope.books = response.data;
+                document.getElementById("create_table").style.display="none";
+                document.getElementById("create_button").style.display="block";
+            });
         });
     };
 

@@ -29,20 +29,21 @@
         </div>
         <hr>
         <div class="site_content">
-            <h1 id="books_header">All Books</h1>
-            <br>
             <div ng-app="mainApp" ng-controller="booksController" style="overflow-x: auto;">
+                <h1 id="books_header">Books Dashboard</h1>
                 <section id="_search">
                     <form id="search_form" autocomplete="off">
+                        <br>
                         <div class="search_box">
                             <label for="search">Search Title</label>
                             <input type="text" ng-model="book_title">
                             <input type="button" ng-click="searchBook(book_title)" value="Search">
                         </div>
+                        <br>
                     </form>
                 </section>
-                <br>
                 <div id="search_results">
+                    <br>
                     <table class="dashboard">
                         <tr>
                             <td>Book Title: </td>
@@ -65,9 +66,9 @@
                             <td>{{ searchedBook.item_description }}</td>
                         </tr>
                     </table>
+                    <br>
                 </div>
-                <br>
-                <table class="dashboard">
+                <table id="main_table" class="dashboard">
                     <tr>
                         <th>Book Title</th>
                         <th>Author</th>
@@ -82,6 +83,39 @@
                         <td><input type="button" ng-click="editBook(book.title)" value="Edit" /></td>
                     </tr>
                 </table>
+                <div id="create_mode">
+                    <br>
+                    <input id="create_button" type="button" ng-click="openCreateMode()" value="Add Book" />
+                    <div id="create_table">
+                        <h2>Add New Book.</h2>
+                        <p>Fill in the deatils below:</p>
+                        <br>
+                        <table class="dashboard">
+                            <tr>
+                                <td>Add Title:</td>
+                                <td><input type="text" ng-model="add_book.title" /></td>
+                            </tr>
+                            <tr>
+                                <td>Add Author:</td>
+                                <td><input type="text" ng-model="add_book.author" /></td>
+                            </tr>
+                            <tr>
+                                <td>Add Genre:</td>
+                                <td><input type="text" ng-model="add_book.genre" /></td>
+                            </tr>
+                            <tr>
+                                <td>Add Link:</td>
+                                <td><input type="text" ng-model="add_book.item_link" /></td>
+                            </tr>
+                            <tr>
+                                <td>Add Description:</td>
+                                <td><input type="text" ng-model="add_book.item_description" /></td>
+                            </tr>
+                        </table>
+                        <br>
+                        <input type="button" ng-click="createBookEntry(add_book.title, add_book.author, add_book.genre, add_book.item_link, add_book.item_description)" value="Submit" />
+                    </div>
+                </div>
                 <br><hr><br>
                 <div id="selected" class="selected_table">
                     <h2>Book Title: {{ selectedBook.title }}</h2>
@@ -99,10 +133,10 @@
                     </table>
                 </div>
                 <div id="edit_selected">
-                    <h2>Book Title: {{ book.title }}</h2>
+                    <h2>Book Title: {{ editSelected.title }}</h2>
                     <h3>Update Book Details:</h3>
                     <br>
-                    <table class="selected dashboard">
+                    <table class="selected_dashboard">
                         <tr>
                             <td>Delete Title:</td>
                             <td>{{ editSelected.title }}</td>

@@ -410,6 +410,33 @@ exports.searchBook = (title, callback) => {
     });
 };
 
+exports.deleteBook = (title, callback) => {
+    // Create sql statement
+    var sql = `
+        DELETE FROM
+          books
+        WHERE
+          title = '${title}'
+        `;
+    db.exec(sql, (err) => {
+        if (err) {
+          return console.error(err.message);
+        }
+        var sql = `
+            DELETE FROM
+              book_details
+            WHERE
+              title = '${title}'
+            `;
+        db.exec(sql, (err) => {
+          if (err) {
+            return console.error(err.message);
+          }
+          callback();
+        });
+    });
+};
+
 exports.getAllBookGenres = (callback) => {
     var sql = `
         SELECT DISTINCT

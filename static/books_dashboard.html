@@ -114,6 +114,8 @@
                         </table>
                         <br>
                         <input type="button" ng-click="createBookEntry(add_book.title, add_book.author, add_book.genre, add_book.item_link, add_book.item_description)" value="Submit" />
+                        <br><br>
+                        <input type="button" ng-click="hideEntry()" value="Cancel" />
                     </div>
                 </div>
                 <br><hr><br>
@@ -158,6 +160,8 @@
                             <td><input type="button" ng-click="updateDescription(editSelected.title, update_descript.item_description)" value="Update" /></td>
                         </tr>
                     </table>
+                    <br><br>
+                    <input type="button" ng-click="hideEntry()" value="Cancel" />
                 </div>
             </div>
         </div>

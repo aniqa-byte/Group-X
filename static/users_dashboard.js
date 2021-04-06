@@ -63,4 +63,9 @@ mainApp.controller("usersController", ($scope, $http) => {
             $scope.update_pass = new Credential ("", "");
         });
     };
+
+    $scope.hideEntry = () => {
+
+        document.getElementById("selected").style.display="none";
+    };
 });

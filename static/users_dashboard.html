@@ -42,7 +42,7 @@
                         <td><input type="button" ng-click="selectUser(user.email)" value="Select"></td>
                     </tr>
                 </table>
-                <hr><br>
+                <br><hr><br>
                 <div id="selected" class="selected_table">
                     <h3>User: {{ selectedUser.email }}</h3>
                     <table class="selected_dashboard">
@@ -56,8 +56,8 @@
                             <td><input type="button" ng-click="deleteUser(selectedUser.email)" value="Delete" /></td>
                         </tr>
                     </table>
-                    <hr>
-                    <h4>Update User Details</h4>
+                    <br><hr><br>
+                    <h3>Update User Details:</h3>
                     <table class="selected_dashboard">
                         <th>User ID:</th>
                         <th>{{ selectedUser.id }}</th>
@@ -72,6 +72,8 @@
                             <td><input type="button" ng-click="updateUserPass(selectedUser.id, update_pass.password)" value="Update"></td>
                         </tr>
                     </table>
+                    <br>
+                    <input type="button" ng-click="hideEntry()" value="Cancel" />
                 </div>
             </div>
         </div>

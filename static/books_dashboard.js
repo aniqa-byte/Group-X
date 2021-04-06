@@ -64,6 +64,13 @@ mainApp.controller("booksController", ($scope, $http) => {
         });
     };
 
+    $scope.hideEntry = () => {
+
+        document.getElementById("create_table").style.display="none";
+        document.getElementById("edit_selected").style.display="none";
+        document.getElementById("create_button").style.display="block";
+    };
+
     $scope.selectBook = (title) => {
     // Locate matching details
     $http.get("/book/" + title).then((response) => {

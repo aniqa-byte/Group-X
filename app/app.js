@@ -117,6 +117,12 @@ app.get("/search-book/:title", (req, res) => {
     });
 });
 
+app.delete("/delete-book/:title", (req, res) => {
+    data.deleteBook(req.params.title, () => {
+        res.send("OK");
+    })
+})
+
 // Add book item endpoint
 app.post("/add-book", (req, res) => {
     data.createBookEntry(req.body, () => {

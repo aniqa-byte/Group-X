@@ -90,6 +90,17 @@ mainApp.controller("booksController", ($scope, $http) => {
         });
     };
 
+    $scope.deleteBook = (title) => {
+
+        $http.delete("/delete-book/" + title).then(() => {
+            console.log("Deleted book: " + title);
+            $http.get("/all-books").then((response) => {
+                $scope.books = response.data;
+                document.getElementById("edit_selected").style.display="none";
+            });
+        });
+    };
+
     $scope.updateGenre = (title, genre) => {
         $scope.update_genre = new Book_complete (title, "", genre, "", "");
         $http.put("/update-book-genre/", $scope.update_genre).then(() => {

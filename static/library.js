@@ -99,9 +99,9 @@ class Book_complete {
 
     constructor(title, author, genre, item_link, item_description) {
         this.title = title;
-        this.author = author;
+        this.author = author || "Empty Author";
         this.genre = genre;
         this.item_link = item_link;
-        this.item_description = item_description;
+        this.item_description = item_description || "Empty Description";
     }
 }

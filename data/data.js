@@ -277,7 +277,46 @@ exports.deleteAccess = (email, callback) => {
         callback();
     });
 };
-
+/*
+// TODO Bugs
+exports.userDeletion = (id, callback) => {
+  // sql statement
+  var sql =`
+    DELETE FROM
+      admin_access
+    WHERE
+      user_id = ${id}
+    `;
+  db.exec(sql, (err) => {
+    if (err) {
+      return console.error(err.message);
+    }
+    sql = `
+      DELETE FROM
+        credentials
+      WHERE
+        user_id = ${id}
+      `;
+    db.exec(sql, (err) => {
+      if (err) {
+        return console.error(err.message);
+      }
+      sql = `
+        DELETE FROM
+          users
+        WHERE
+          id = ${id}
+        `;
+      db.exec(sql, (err) => {
+        if (err) {
+          return console.error(err.message);
+        }
+        callback();
+      });
+    });
+  });
+};
+*/
 // Export updateUserEmail email callback function, where user input matches id parameter
 exports.updateUserEmail = (user, callback) => {
     var sql = `

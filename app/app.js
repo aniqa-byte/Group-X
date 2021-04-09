@@ -9,6 +9,8 @@ const data = require("../data/data.js");
 // Import express library
 const express = require("express");
 
+const path = require('path');
+
 // Value express application
 var app = express();
 
@@ -42,6 +44,17 @@ app.get("/validate-login/:email/:password", (req, res) => {
 
 // Add /user post endpoint
 app.post("/user", (req, res) => {
+    if (!req.body.email) {
+        console.log("Emails was not provided.");
+        return res.status(400).send({
+            message: "A email must be provided."
+        });
+    } else if (!req.body.password) {
+        console.log("Password was not provided.")
+        return res.status(400).send({
+            message: "A password must be provided."
+        });
+    }
     // Call register on data
     data.registerUser(req.body, () => {
         res.send("OK");
@@ -50,6 +63,12 @@ app.post("/user", (req, res) => {
 
 // Add /user post endpoint
 app.put("/update-email", (req, res) => {
+    if (!req.body.email) {
+        console.log("Email was not provided");
+        return res.status(400).send({
+            message: "A email must be provided."
+        });
+    }
     // Call register on data
     data.updateUserEmail(req.body, () => {
         res.send("OK");
@@ -58,6 +77,12 @@ app.put("/update-email", (req, res) => {
 
 // Add /user post endpoint
 app.put("/update-pass", (req, res) => {
+    if (!req.body.password) {
+        console.log("Password was not provided.")
+        return res.status(400).send({
+            message: "A password must be provided."
+        });
+    }
     // Call register on data
     data.updateUserPass(req.body, () => {
         res.send("OK");
@@ -125,6 +150,22 @@ app.delete("/delete-book/:title", (req, res) => {
 
 // Add book item endpoint
 app.post("/add-book", (req, res) => {
+    if (!req.body.title) {
+        console.log("Title was not provided.")
+        return res.status(400).send({
+            message: "A title must be provided."
+        });
+    } else if (!req.body.genre) {
+        console.log("Genre was not provided.")
+        return res.status(400).send({
+            message: "A genre must be provided."
+        });
+    } else if (!req.body.item_link) {
+        console.log("Link was not provided.")
+        return res.status(400).send({
+            message: "A link must be provided."
+        });
+    }
     data.createBookEntry(req.body, () => {
         res.send("OK");
     });
@@ -132,6 +173,12 @@ app.post("/add-book", (req, res) => {
 
 // Update book genre endpoint
 app.put("/update-book-genre", (req, res) => {
+    if (!req.body.genre) {
+        console.log("Genre was not provided.")
+        return res.status(400).send({
+            message: "A Genre must be provided."
+        });
+    }
     data.updateBookGenre(req.body, () => {
         res.send("OK");
     });
@@ -139,6 +186,12 @@ app.put("/update-book-genre", (req, res) => {
 
 // Update book item link endpoint
 app.put("/update-book-link", (req, res) => {
+    if (!req.body.item_link) {
+        console.log("Link was not provided.")
+        return res.status(400).send({
+            message: "A Link must be provided."
+        });
+    }
     data.updateBookLink(req.body, () => {
         res.send("OK");
     });
@@ -146,6 +199,12 @@ app.put("/update-book-link", (req, res) => {
 
 // Update book description endpoint
 app.put("/update-book-description", (req, res) => {
+    if (!req.body.item_description) {
+        console.log("Description was not provided.")
+        return res.status(400).send({
+            message: "A Description must be provided."
+        });
+    }
     data.updateBookDescription(req.body, () => {
         res.send("OK");
     });
@@ -161,7 +220,7 @@ app.get("/books-genre-match/:genre", (req, res) => {
 // Capture 404 errors
 app.get("*", (req, res) => {
     // Redirect to error page
-    res.sendFile(__dirname + "/ErrorPage.html");
+    res.sendFile("ErrorPage.html", { root: path.join(__dirname, '../static/')});
 });
 
 // Initiate listen on port 3000

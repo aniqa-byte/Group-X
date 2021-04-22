@@ -62,7 +62,7 @@ app.post("/user", (req, res) => {
 });
 
 // Add /user post endpoint
-app.put("/update-email", (req, res) => {
+app.put("/update/email", (req, res) => {
     if (!req.body.email) {
         console.log("Email was not provided");
         return res.status(400).send({
@@ -76,7 +76,7 @@ app.put("/update-email", (req, res) => {
 });
 
 // Add /user post endpoint
-app.put("/update-pass", (req, res) => {
+app.put("/update/pass", (req, res) => {
     if (!req.body.password) {
         console.log("Password was not provided.")
         return res.status(400).send({
@@ -142,14 +142,14 @@ app.get("/search-book/:title", (req, res) => {
     });
 });
 
-app.delete("/delete-book/:title", (req, res) => {
+app.delete("/book/:title", (req, res) => {
     data.deleteBook(req.params.title, () => {
         res.send("OK");
     })
 })
 
 // Add book item endpoint
-app.post("/add-book", (req, res) => {
+app.post("/book", (req, res) => {
     if (!req.body.title) {
         console.log("Title was not provided.")
         return res.status(400).send({
@@ -172,7 +172,7 @@ app.post("/add-book", (req, res) => {
 });
 
 // Update book genre endpoint
-app.put("/update-book-genre", (req, res) => {
+app.put("/update/book/genre", (req, res) => {
     if (!req.body.genre) {
         console.log("Genre was not provided.")
         return res.status(400).send({
@@ -185,7 +185,7 @@ app.put("/update-book-genre", (req, res) => {
 });
 
 // Update book item link endpoint
-app.put("/update-book-link", (req, res) => {
+app.put("/update/book/link", (req, res) => {
     if (!req.body.item_link) {
         console.log("Link was not provided.")
         return res.status(400).send({
@@ -198,7 +198,7 @@ app.put("/update-book-link", (req, res) => {
 });
 
 // Update book description endpoint
-app.put("/update-book-description", (req, res) => {
+app.put("/update/book/description", (req, res) => {
     if (!req.body.item_description) {
         console.log("Description was not provided.")
         return res.status(400).send({

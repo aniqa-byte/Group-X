@@ -53,7 +53,7 @@ mainApp.controller("booksController", ($scope, $http) => {
 
         $scope.add_book = new Book_complete (title, author, genre, item_link, item_description);
 
-        $http.post("/add-book", $scope.add_book).then(() => {
+        $http.post("/book", $scope.add_book).then(() => {
             console.log("Successfully added new title:" + $scope.add_book.title);
             $scope.add_book = new Book_complete ("", "", "", "", "");
             $http.get("/all-books").then((response) => {
@@ -92,7 +92,7 @@ mainApp.controller("booksController", ($scope, $http) => {
 
     $scope.deleteBook = (title) => {
 
-        $http.delete("/delete-book/" + title).then(() => {
+        $http.delete("/book/" + title).then(() => {
             console.log("Deleted book: " + title);
             $http.get("/all-books").then((response) => {
                 $scope.books = response.data;
@@ -103,7 +103,7 @@ mainApp.controller("booksController", ($scope, $http) => {
 
     $scope.updateGenre = (title, genre) => {
         $scope.update_genre = new Book_complete (title, "", genre, "", "");
-        $http.put("/update-book-genre/", $scope.update_genre).then(() => {
+        $http.put("/update/book/genre/", $scope.update_genre).then(() => {
             console.log("Genre Updated: " + $scope.update_genre.genre)
             $http.get("/all-books").then((response) => {
                 $scope.update_genre = new Book_complete ("", "", "", "", "");
@@ -114,7 +114,7 @@ mainApp.controller("booksController", ($scope, $http) => {
 
     $scope.updateLink = (title, item_link) => {
         $scope.update_link = new Book_complete (title, "", "", item_link, "");
-        $http.put("/update-book-link/", $scope.update_link).then(() => {
+        $http.put("/update/book/link/", $scope.update_link).then(() => {
             console.log("Link Updated: " + $scope.update_link.item_link)
             $http.get("/all-books").then((response) => {
                 $scope.update_link = new Book_complete ("", "", "", "", "");
@@ -125,7 +125,7 @@ mainApp.controller("booksController", ($scope, $http) => {
 
     $scope.updateDescription = (title, item_description) => {
         $scope.update_descript = new Book_complete (title, "", "", "", item_description);
-        $http.put("/update-book-description/", $scope.update_descript).then(() => {
+        $http.put("/update/book/description/", $scope.update_descript).then(() => {
             console.log("Book Description: " + $scope.update_descript.item_description)
             $http.get("/all-books").then((response) => {
                 $scope.update_description = new Book_complete ("", "", "", "", "");

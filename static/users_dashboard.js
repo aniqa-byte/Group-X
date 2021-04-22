@@ -39,7 +39,7 @@ mainApp.controller("usersController", ($scope, $http) => {
         // Call put endpoint for user email match
         $scope.update_email = new User (id, email);
         console.log("User selected for update: " + $scope.update_email.id)
-        $http.put("/update-email", $scope.update_email).then(() => {
+        $http.put("/update/email", $scope.update_email).then(() => {
             console.log("Updated email: " + $scope.update_email.email)
             $scope.update_email = new User ("", "");
             // Retrieve all user data
@@ -58,7 +58,7 @@ mainApp.controller("usersController", ($scope, $http) => {
     $scope.updateUserPass = (id, password) => {
         // Call put endpoint for user id match
         $scope.update_pass = new Credential (id, password);
-        $http.put("/update-pass", $scope.update_pass).then(() => {
+        $http.put("/update/pass", $scope.update_pass).then(() => {
             console.log("Password updated: " + $scope.update_pass.password)
             $scope.update_pass = new Credential ("", "");
         });

@@ -7,11 +7,26 @@ Reader App
 Software Development University Project
 
 ## Contributors:
+
 - Aniqa Abdullah
 - Yusuf Ali
 - Christopher Christofi
 - Kevin Molokwu
 - Chukwuyenum Nnaghor
+
+## Features:
+
+- CRUD application
+- User Dashboard
+- Book management
+- Book selection methods
+- Book search methods
+- Book update methods
+- Book deletion methods
+
+## Description:
+
+University group project. Simple CRUD library application.
 
 ## Build Instructions:
 

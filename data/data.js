@@ -7,8 +7,10 @@ const sqlite3 = require("sqlite3").verbose();
 const library = require("../library.js");
 
 // Initiate database connection
-// var db = new sqlite3.Database("data/database.db", (err) => { // Prior development method -> utilises database.sql
+// Local storage database development method utilises database.sql
+// var db = new sqlite3.Database("data/database.db", (err) => {
 var db = new sqlite3.Database(":memory:", (err) => {
+        // Notifiy error connecting to database
         if (err) {
             return console.error(err.message);
         }
@@ -54,7 +56,7 @@ db.serialize(() => {
     db.run("INSERT INTO book_genre VALUES('Genre 3','Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.')");
     db.run("INSERT INTO book_genre VALUES('Genre 4','Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.')");
 });
-
+/*
 // TODO: unused in login feature (query is functional)
 exports.validateAdmin = (email, password, callback) => {
     // Create SQL statement
@@ -94,9 +96,12 @@ exports.validateAdmin = (email, password, callback) => {
         callback(access_level);
     });
 };
+*/
 
+// User verification callback, used in login feature
+// TODO frontend integration, fix bug, 
 exports.validateUser = (email, password, callback) => {
-
+    // Create sql query that returns existence count
     let sql = `
         SELECT COUNT(*) AS record_validated
         FROM users u
@@ -108,9 +113,10 @@ exports.validateUser = (email, password, callback) => {
           c.password = '${password}'
         GROUP BY u.email
     `;
+    // Commit query
     db.get(sql, (err, row) => {
-
         try {
+            // Qualify value of COUNT result
             let validate = row.record_validated
             if (validate === 1) {
                 return console.log("Validated User");
@@ -176,7 +182,6 @@ exports.getUser = (email, callback) => {
         `;
     // Execute query. Returning user row matching email.
     db.get(sql, (err, row) => {
-
         try {
             // Create a user object
             var user = new library.User(row.id, row.email);
@@ -226,6 +231,7 @@ exports.deleteUser = (email, callback) => {
         WHERE
           email = '${email}'
         `;
+    // Execute query
     db.exec(sql, (err) => {
         if (err) {
             return console.error(err.message);
@@ -248,6 +254,7 @@ exports.deleteCredential = (email, callback) => {
                      WHERE
                        email = '${email}')
         `;
+    // Execute sql
     db.exec(sql, (err) => {
         if (err) {
             return console.error(err.message);
@@ -270,6 +277,7 @@ exports.deleteAccess = (email, callback) => {
                      WHERE
                        email = '${email}')
         `;
+    // Execute delete
     db.exec(sql, (err) => {
         if (err) {
             return console.error(err.message);
@@ -278,7 +286,7 @@ exports.deleteAccess = (email, callback) => {
     });
 };
 /*
-// TODO Bugs
+// TODO: Congregated variation of the delete user callback, lacks success
 exports.userDeletion = (id, callback) => {
   // sql statement
   var sql =`
@@ -319,6 +327,7 @@ exports.userDeletion = (id, callback) => {
 */
 // Export updateUserEmail email callback function, where user input matches id parameter
 exports.updateUserEmail = (user, callback) => {
+    // Create sql update statement
     var sql = `
         UPDATE
           users
@@ -327,6 +336,7 @@ exports.updateUserEmail = (user, callback) => {
         WHERE
           id = ${user.id}
         `;
+    // Execute update query
     db.exec(sql, (err) => {
         try {
             callback(user);
@@ -339,6 +349,7 @@ exports.updateUserEmail = (user, callback) => {
 
 // Export updateUserPass password callback function, where user input matches id parameter
 exports.updateUserPass = (user, callback) => {
+    // Create SQL statement
     var sql = `
         UPDATE
           credentials
@@ -347,6 +358,7 @@ exports.updateUserPass = (user, callback) => {
         WHERE
           user_id = ${user.id}
         `;
+    // callback updated executed query
     db.exec(sql, (err) => {
         try{
             callback(user);
@@ -449,6 +461,7 @@ exports.searchBook = (title, callback) => {
     });
 };
 
+// Export multiple delete book callback function, removing book across matching database tables
 exports.deleteBook = (title, callback) => {
     // Create sql statement
     var sql = `
@@ -457,16 +470,19 @@ exports.deleteBook = (title, callback) => {
         WHERE
           title = '${title}'
         `;
+    // Execute delete query
     db.exec(sql, (err) => {
         if (err) {
           return console.error(err.message);
         }
+        // Create paired sql query
         var sql = `
             DELETE FROM
               book_details
             WHERE
               title = '${title}'
             `;
+        // Excecute delete query
         db.exec(sql, (err) => {
           if (err) {
             return console.error(err.message);
@@ -476,7 +492,9 @@ exports.deleteBook = (title, callback) => {
     });
 };
 
+// Export total genre selection callback function
 exports.getAllBookGenres = (callback) => {
+    // Create distinct genre selection query
     var sql = `
         SELECT DISTINCT
           genre
@@ -487,9 +505,12 @@ exports.getAllBookGenres = (callback) => {
         if (err) {
             return console.error(err.message);
         }
+        // Create Genre type array
         var genre_types = [];
         for (var row of rows) {
+            // Create genre object
             var genre_type = new library.Book_genre (row.genre);
+            // Push query result to array
             genre_types.push(genre_type);
         }
         callback(genre_types);
@@ -497,8 +518,9 @@ exports.getAllBookGenres = (callback) => {
 
 }
 
+// Export update genre callback funciton
 exports.updateBookGenre = (book, callback) => {
-
+    // Build sql statement, matching parameter
     var sql = `
         UPDATE
           books
@@ -507,6 +529,7 @@ exports.updateBookGenre = (book, callback) => {
         WHERE
           title = '${book.title}'
         `;
+    // Execute query
     db.exec(sql, (err) => {
         try{
             callback(book);
@@ -517,8 +540,9 @@ exports.updateBookGenre = (book, callback) => {
     });
 }
 
+// Export update book link callback function
 exports.updateBookLink = (book, callback) => {
-
+    // Build sql statement, finding matched parameter
     var sql = `
         UPDATE
           book_details
@@ -527,6 +551,7 @@ exports.updateBookLink = (book, callback) => {
         WHERE
           title = '${book.title}'
         `;
+    // Execute sql statement
     db.exec(sql, (err) => {
         try{
             callback(book);
@@ -537,8 +562,9 @@ exports.updateBookLink = (book, callback) => {
     });
 }
 
+// Export update book description callback function
 exports.updateBookDescription = (book, callback) => {
-
+    // Create sql statement
     var sql = `
         UPDATE
           book_details
@@ -547,6 +573,7 @@ exports.updateBookDescription = (book, callback) => {
         WHERE
           title = '${book.title}'
         `;
+    // Execute update query
     db.exec(sql, (err) => {
         try{
             callback(book);
@@ -559,20 +586,22 @@ exports.updateBookDescription = (book, callback) => {
 
 // Exports createbook callback function, inserting user entry
 exports.createBookEntry = (book, callback) => {
+    // Form query from input data
     var sql = `INSERT INTO books VALUES('${book.title}', '${book.author}', '${book.genre}')`;
     // Execute SQL insert statement
     db.exec(sql, (err) => {
-      if (err) {
-        return console.error(err.message);
-      }
-      var sql = `INSERT INTO book_details VALUES('${book.title}', '${book.item_link}', '${book.item_description}')`;
-      // Execute SQL insert statement
-      db.exec(sql, (err) => {
         if (err) {
-          return console.error(err.message);
+            return console.error(err.message);
         }
-        callback();
-      });
+        // Form query from input data
+        var sql = `INSERT INTO book_details VALUES('${book.title}', '${book.item_link}', '${book.item_description}')`;
+        // Execute SQL insert statement
+        db.exec(sql, (err) => {
+            if (err) {
+                return console.error(err.message);
+            }
+            callback();
+        });
     });
 }
 

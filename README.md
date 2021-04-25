@@ -9,7 +9,6 @@ Software Development University Project
 ## Contributors:
 
 - Aniqa Abdullah
-- Yusuf Ali
 - Christopher Christofi
 - Kevin Molokwu
 - Chukwuyenum Nnaghor

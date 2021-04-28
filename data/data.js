@@ -6,6 +6,10 @@ const sqlite3 = require("sqlite3").verbose();
 // The application layer uses library classes
 const library = require("../library.js");
 
+const material = require("./material.json");
+
+console.log(material.book[0].title);
+
 // Initiate database connection
 // Local storage database development method utilises database.sql
 // var db = new sqlite3.Database("data/database.db", (err) => {
@@ -39,6 +43,10 @@ db.serialize(() => {
     db.run("INSERT INTO credentials VALUES('AAA111',2)");
     db.run("INSERT INTO admin_access VALUES(1,2)");
     // Insert of book relevant (test) values
+    db.run(`INSERT INTO books VALUES('${material.book[0].title}','${material.book[0].author}','${material.book[0].genre}')`);
+    db.run(`INSERT INTO book_details VALUES('${material.book[0].title}','${material.book[0].item_link}','${material.book[0].item_description}')`);
+    db.run(`INSERT INTO book_genre VALUES('${material.book[0].genre}','${material.book[0].item_description}')`);
+    /*
     db.run("INSERT INTO books VALUES('Title 1','Author 1','Genre 1')");
     db.run("INSERT INTO books VALUES('Angular JS','Author 1','Genre 1')");
     db.run("INSERT INTO books VALUES('SQLite','Author 2','Genre 1')");
@@ -55,7 +63,8 @@ db.serialize(() => {
     db.run("INSERT INTO book_genre VALUES('Genre 2','Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.')");
     db.run("INSERT INTO book_genre VALUES('Genre 3','Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.')");
     db.run("INSERT INTO book_genre VALUES('Genre 4','Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.')");
-});
+  */
+  });
 /*
 // TODO: unused in login feature (query is functional)
 exports.validateAdmin = (email, password, callback) => {

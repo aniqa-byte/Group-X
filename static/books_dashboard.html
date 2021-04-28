@@ -73,7 +73,9 @@
                         <th>Book Title</th>
                         <th>Author</th>
                         <th>Genre</th>
+                        <!--    Ineffective. TODO in corresponding js file
                         <th><select name="genreSelect" ng-model="selectedGenre.genre" ng-options="genre as book.genre for book in book_genres" ng-change="updateGenreSelection()"></select></th>
+                        -->
                     </tr>
                     <tr id="books_main" ng-repeat = "book in books">
                         <td>{{ book.title }}</td>

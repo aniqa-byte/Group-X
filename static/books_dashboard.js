@@ -28,7 +28,7 @@ mainApp.controller("booksController", ($scope, $http) => {
         $scope.book_genres = response.data;
     });
 
-    // Ineffective
+    /* Ineffective, TODO, dropdown list updates but result table not
     $scope.updateGenreSelection = () => {
 
         $scope.selectedGenre = new Book_genre (genre);
@@ -39,6 +39,7 @@ mainApp.controller("booksController", ($scope, $http) => {
             document.getElementById("books_main").style.display="block";
         });
     };
+    */
 
     $scope.openCreateMode = () => {
 
@@ -96,6 +97,7 @@ mainApp.controller("booksController", ($scope, $http) => {
             console.log("Deleted book: " + title);
             $http.get("/all-books").then((response) => {
                 $scope.books = response.data;
+                document.getElementById("selected").style.display="none";
                 document.getElementById("edit_selected").style.display="none";
             });
         });

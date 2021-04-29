@@ -19,9 +19,14 @@
                     <p>Group-X Project</p>
                 </div>
             </div>
+
+            <!--
+                Header Navigation Bar
+            -->
+
             <div class="menu_row">
                 <ul id="menu">
-                    <li class="live"><a href="./books_dashboard.html">Home</a></li>
+                    <li class="live"><a href="./books_dashboard.html">Books</a></li>
                     <li><a href="./registration.html">Register</a></li>
                     <li><a href="./users_dashboard.html">Users</a></li>
                 </ul>
@@ -36,6 +41,11 @@
                     Use the <strong>search bar</strong> and find your chosen title.
                 </p>
                 <br>
+
+                <!--
+                    Search bar element segment
+                -->
+
                 <section id="_search">
                     <form id="search_form" autocomplete="off">
                         <br>
@@ -53,6 +63,11 @@
                     and follow the link for more information.
                 </p>
                 <br>
+
+                <!--
+                    Search results table display element
+                -->
+
                 <div id="search_results">
                     <br>
                     <table class="dashboard">
@@ -79,6 +94,11 @@
                     </table>
                     <br>
                 </div>
+
+                <!--
+                    Standard total data table display
+                -->
+
                 <table id="main_table" class="dashboard">
                     <tr>
                         <th>Book Title</th>
@@ -96,6 +116,11 @@
                         <td><input type="button" ng-click="editBook(book.title)" value="Edit" /></td>
                     </tr>
                 </table>
+
+                <!--
+                    Creation post method table display
+                -->
+
                 <div id="create_mode">
                     <br>
                     <input id="create_button" type="button" ng-click="openCreateMode()" value="Add Book" />
@@ -132,6 +157,11 @@
                     </div>
                 </div>
                 <br><hr><br>
+
+                <!--
+                    Selection response table display
+                -->
+
                 <div id="selected" class="selected_table">
                     <h2>Book Title: {{ selectedBook.title }}</h2>
                     <h3>Book Details</h3>
@@ -147,6 +177,11 @@
                         </tr>
                     </table>
                 </div>
+
+                <!--
+                    Selected put method table display
+                -->
+
                 <div id="edit_selected">
                     <h2>Book Title: {{ editSelected.title }}</h2>
                     <br>

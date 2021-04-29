@@ -5,12 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.js"></script>
+    <link href="./main.css" rel="stylesheet" />
     <title>Error Page</title>
 </head>
 <body>
-    <div ng-app="mainApp" ng-controller="notFoundHandler">
+    <div class="site_content">
         <h1>Error 404 Not Found</h1>
         <p>Sorry your request was not found!</p>
+        <p>Click the home button below.</p>
+        <br>
         <form>
             <button type="submit" formaction="books_dashboard.html">Home</button>
         </form>

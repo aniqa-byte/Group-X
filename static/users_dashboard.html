@@ -21,7 +21,7 @@
             </div>
             <div class="menu_row">
                 <ul id="menu">
-                    <li><a href="./books_dashboard.html">Home</a></li>
+                    <li><a href="./books_dashboard.html">Books</a></li>
                     <li><a href="./registration.html">Register</a></li>
                     <li class="live"><a href="./users_dashboard.html">Users</a></li>
                 </ul>
@@ -31,6 +31,11 @@
         <div class=site_content>
             <h1>All Users</h1>
             <div ng-app="mainApp" ng-controller="usersController" class="all_users_table" style="overflow-x: auto;">
+
+                <!--
+                    Standard total data table display
+                -->
+
                 <table class="dashboard">
                     <tr>
                         <th>User ID</th>
@@ -43,6 +48,11 @@
                     </tr>
                 </table>
                 <br><hr><br>
+
+                <!--
+                    Selection response table display
+                -->
+
                 <div id="selected" class="selected_table">
                     <h3>User: {{ selectedUser.email }}</h3>
                     <table class="selected_dashboard">
@@ -57,6 +67,11 @@
                         </tr>
                     </table>
                     <br><hr><br>
+
+                    <!--
+                    Selected put method table display
+                -->
+
                     <h3>Update User Details:</h3>
                     <table class="selected_dashboard">
                         <th>User ID:</th>

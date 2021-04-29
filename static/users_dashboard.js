@@ -22,6 +22,7 @@ mainApp.controller("usersController", ($scope, $http) => {
         });
     }
 
+    // Passes data through to deletion
     $scope.deleteUser = (email) => {
         // Call endpoint retrieve user
         $http.delete("/user/" + email).then(() => {
@@ -35,6 +36,7 @@ mainApp.controller("usersController", ($scope, $http) => {
         });
     };
 
+    // Passes data through put method
     $scope.updateUserEmail = (id, email) => {
         // Call put endpoint for user email match
         $scope.update_email = new User (id, email);
@@ -55,6 +57,7 @@ mainApp.controller("usersController", ($scope, $http) => {
         });
     };
 
+    // Passes data through to put method
     $scope.updateUserPass = (id, password) => {
         // Call put endpoint for user id match
         $scope.update_pass = new Credential (id, password);
@@ -64,8 +67,9 @@ mainApp.controller("usersController", ($scope, $http) => {
         });
     };
 
+    // Initiates display update
     $scope.hideEntry = () => {
-
+        // Hides selected content display
         document.getElementById("selected").style.display="none";
     };
 });

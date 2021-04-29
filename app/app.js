@@ -217,10 +217,16 @@ app.get("/books-genre-match/:genre", (req, res) => {
     });
 });
 
+// Set books dashboard to root path endpoint
+app.get("/", (req, res) => {
+    // Redirect to books dashboard path in static
+    res.sendFile("books_dashboard.html", { root: path.join(__dirname, '../static/')});
+});
+
 // Capture 404 errors
 app.get("*", (req, res) => {
     // Redirect to error page
-    res.sendFile("ErrorPage.html", { root: path.join(__dirname, '../static/')});
+    res.sendFile("404.html", { root: path.join(__dirname, '../static/')});
 });
 
 // Initiate listen on port 3000

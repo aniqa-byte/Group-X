@@ -21,8 +21,8 @@
             </div>
             <div class="menu_row">
                 <ul id="menu">
-                    <li><a href="./index.html">Home</a></li>
-                    <li class="live"><a href="./books_dashboard.html">Books</a></li>
+                    <li class="live"><a href="./books_dashboard.html">Home</a></li>
+                    <li><a href="./registration.html">Register</a></li>
                     <li><a href="./users_dashboard.html">Users</a></li>
                 </ul>
             </div>
@@ -31,6 +31,11 @@
         <div class="site_content">
             <div ng-app="mainApp" ng-controller="booksController" style="overflow-x: auto;">
                 <h1 id="books_header">Books Dashboard</h1>
+                <br>
+                <p>
+                    Use the <strong>search bar</strong> and find your chosen title.
+                </p>
+                <br>
                 <section id="_search">
                     <form id="search_form" autocomplete="off">
                         <br>
@@ -42,6 +47,12 @@
                         <br>
                     </form>
                 </section>
+                <br>
+                <p>
+                    <strong>Select</strong> an option below
+                    and follow the link for more information.
+                </p>
+                <br>
                 <div id="search_results">
                     <br>
                     <table class="dashboard">
@@ -90,7 +101,7 @@
                     <input id="create_button" type="button" ng-click="openCreateMode()" value="Add Book" />
                     <div id="create_table">
                         <h2>Add New Book.</h2>
-                        <p>Fill in the deatils below:</p>
+                        <p>Fill in the details below:</p>
                         <br>
                         <table class="dashboard">
                             <tr>
@@ -138,7 +149,9 @@
                 </div>
                 <div id="edit_selected">
                     <h2>Book Title: {{ editSelected.title }}</h2>
+                    <br>
                     <h3>Update Book Details:</h3>
+                    <p>Fill in the chosen details below and click update/delete when you are ready.</p>
                     <br>
                     <table class="selected_dashboard">
                         <tr>

@@ -1,5 +1,6 @@
 "use strict";
 
+// Class constructor denoting user details
 exports.User = class {
     // User ID
     id;
@@ -12,6 +13,7 @@ exports.User = class {
     }
 }
 
+// Class constructor denoting access type
 exports.User_access = class {
     // access level - default non-admin
     access = 0;
@@ -24,6 +26,7 @@ exports.User_access = class {
     }
 }
 
+// Class constructor denoting user credentials
 exports.Credential = class {
     // user id
     id;
@@ -36,6 +39,7 @@ exports.Credential = class {
     }
 }
 
+// Class constructor denoting login requirements
 exports.Login = class {
     // user email
     email;
@@ -48,6 +52,7 @@ exports.Login = class {
     }
 }
 
+// Class constructor denoting primary book features
 exports.Book = class {
     // Item title
     title;
@@ -63,6 +68,7 @@ exports.Book = class {
     }
 }
 
+// Class contructor denoting secondary book features
 exports.Book_details = class {
     // Item URL link
     item_link;
@@ -78,6 +84,7 @@ exports.Book_details = class {
     }
 }
 
+// Class constructor denoting genre type and descriptor
 exports.Book_genre = class {
     // Genre category
     genre;
@@ -90,18 +97,26 @@ exports.Book_genre = class {
     }
 }
 
+// Class constructor denoting complete book detailing
 exports.Book_complete = class {
+    // Book title
     title;
+    // Book author
     author;
+    // Book genre
     genre;
+    // Book link
     item_link;
+    // Book description
     item_description;
 
     constructor(title, author, genre, item_link, item_description) {
         this.title = title;
-        this.author = author || "Empty Author";
-        this.genre = genre;
+        this.author = author;
+        // parameter input or standard replacement
+        this.genre = genre || "Empty Genre";
         this.item_link = item_link;
+        // parameter input or standard replacement
         this.item_description = item_description || "Empty Description";
     }
 }

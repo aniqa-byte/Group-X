@@ -115,9 +115,11 @@ ul#menu li a {
 
 /* login registration segment */
 .main_content {
-    float: left;
     width: 60%;
     position: relative;
+    text-align: center;
+    align-content: center;
+    margin: 0 auto 0 auto;
     font-size: 15px;
     line-height: 1.7;
     /*border: 10px solid #FFF;*/
@@ -126,7 +128,6 @@ ul#menu li a {
 fieldset {
     border: none;
     font-size: 20px;
-    margin-inline-start: 25%;
 }
 
 #register_form, #login_form {
@@ -139,6 +140,8 @@ fieldset {
     display: flex;
     flex-direction: row;
     margin: 8px auto;
+    align-content: center;
+    justify-content: center;
 }
 
 .form_box label {

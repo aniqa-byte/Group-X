@@ -6,11 +6,10 @@ const sqlite3 = require("sqlite3").verbose();
 // The application layer uses library classes
 const library = require("../library.js");
 
+// Import json data file
 const material = require("./material.json");
 
 // Initiate database connection
-// Local storage database development method utilises database.sql
-// var db = new sqlite3.Database("data/database.db", (err) => {
 var db = new sqlite3.Database(":memory:", (err) => {
         // Notifiy error connecting to database
         if (err) {

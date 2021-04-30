@@ -9,6 +9,7 @@ const data = require("../data/data.js");
 // Import express library
 const express = require("express");
 
+// Import path library
 const path = require('path');
 
 // Value express application
@@ -142,6 +143,7 @@ app.get("/search-book/:title", (req, res) => {
     });
 });
 
+// Delete book endpoint
 app.delete("/book/:title", (req, res) => {
     data.deleteBook(req.params.title, () => {
         res.send("OK");
@@ -150,15 +152,16 @@ app.delete("/book/:title", (req, res) => {
 
 // Add book item endpoint
 app.post("/book", (req, res) => {
+    // Qualify input contains all required parameters
     if (!req.body.title) {
         console.log("Title was not provided.")
         return res.status(400).send({
             message: "A title must be provided."
         });
-    } else if (!req.body.genre) {
-        console.log("Genre was not provided.")
+    } else if (!req.body.author) {
+        console.log("Author was not provided.")
         return res.status(400).send({
-            message: "A genre must be provided."
+            message: "A author must be provided."
         });
     } else if (!req.body.item_link) {
         console.log("Link was not provided.")
@@ -210,12 +213,14 @@ app.put("/update/book/description", (req, res) => {
     });
 });
 
+/* Unused incomplete genre categorisation
 app.get("/books-genre-match/:genre", (req, res) => {
     // Call getGenre callback function from data
     data.matchedGenreBooks(req.params.genre, (matched_books) => {
         res.json(matched_books);
     });
 });
+*/
 
 // Set books dashboard to root path endpoint
 app.get("/", (req, res) => {

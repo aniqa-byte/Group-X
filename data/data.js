@@ -42,7 +42,7 @@ db.serialize(() => {
     db.run(`INSERT INTO credentials VALUES('${material.user[1].password}','${material.user[1].id}')`);
     db.run(`INSERT INTO admin_access VALUES('${material.user[1].access}','${material.user[1].id}')`);
 
-    // Insert of book relevant (test) values
+    // Insert of book relevant (standard) values
     db.run(`INSERT INTO books VALUES('${material.book[0].title}','${material.book[0].author}','${material.book[0].genre}')`);
     db.run(`INSERT INTO book_details VALUES('${material.book[0].title}','${material.book[0].item_link}','${material.book[0].item_description}')`);
     db.run(`INSERT INTO book_genre VALUES('${material.book[0].genre}','${material.book[0].genre_description}')`);
@@ -56,50 +56,9 @@ db.serialize(() => {
     db.run(`INSERT INTO book_genre VALUES('${material.book[2].genre}','${material.book[2].genre_description}')`);
 
   });
-/*
-// TODO: unused in login feature (query is functional)
-exports.validateAdmin = (email, password, callback) => {
-    // Create SQL statement
-    var sql = `
-        SELECT
-          aa.access
-        FROM
-          admin_access aa
-        WHERE
-          aa.user_id = (SELECT
-                          c.user_id
-                        FROM
-                          credentials c,
-                          users u
-                        WHERE
-                          c.password = '${password}'
-                          AND
-                          u.email = '${email}'
-                        )
-        `;
-    db.get(sql, function(err, row) {
-        // Selected user access level as parameter for conditional statements
-        let user_access = row.access
-        // Error handling
-        if (err) {
-            return console.error(err.message);
-        // Qualify if user is not admin level
-        } else if (user_access !== 1) {
-            return console.log("User is not an Admin");
-        // Qualify if user is admin level
-        } else if (user_access === 1) {
-            return console.log("User is an admin");
-        };
-        // Create Access Level Object
-        var access_level = new library.User_access(row.access);
-        // Return user admin
-        callback(access_level);
-    });
-};
-*/
 
 // User verification callback, used in login feature
-// TODO frontend integration, fix bug, backend is functional, validation occurs
+// TODO incomplete frontend integration, fix bug, backend is functional, validation occurs
 exports.validateUser = (email, password, callback) => {
     // Create sql query that returns existence count
     let sql = `
@@ -285,46 +244,7 @@ exports.deleteAccess = (email, callback) => {
         callback();
     });
 };
-/*
-// TODO: Congregated variation of the delete user callback, lacks success
-exports.userDeletion = (id, callback) => {
-  // sql statement
-  var sql =`
-    DELETE FROM
-      admin_access
-    WHERE
-      user_id = ${id}
-    `;
-  db.exec(sql, (err) => {
-    if (err) {
-      return console.error(err.message);
-    }
-    sql = `
-      DELETE FROM
-        credentials
-      WHERE
-        user_id = ${id}
-      `;
-    db.exec(sql, (err) => {
-      if (err) {
-        return console.error(err.message);
-      }
-      sql = `
-        DELETE FROM
-          users
-        WHERE
-          id = ${id}
-        `;
-      db.exec(sql, (err) => {
-        if (err) {
-          return console.error(err.message);
-        }
-        callback();
-      });
-    });
-  });
-};
-*/
+
 // Export updateUserEmail email callback function, where user input matches id parameter
 exports.updateUserEmail = (user, callback) => {
     // Create sql update statement
@@ -604,6 +524,48 @@ exports.createBookEntry = (book, callback) => {
         });
     });
 }
+
+/*
+// TODO: unused in login feature (query is functional)
+exports.validateAdmin = (email, password, callback) => {
+    // Create SQL statement
+    var sql = `
+        SELECT
+          aa.access
+        FROM
+          admin_access aa
+        WHERE
+          aa.user_id = (SELECT
+                          c.user_id
+                        FROM
+                          credentials c,
+                          users u
+                        WHERE
+                          c.password = '${password}'
+                          AND
+                          u.email = '${email}'
+                        )
+        `;
+    db.get(sql, function(err, row) {
+        // Selected user access level as parameter for conditional statements
+        let user_access = row.access
+        // Error handling
+        if (err) {
+            return console.error(err.message);
+        // Qualify if user is not admin level
+        } else if (user_access !== 1) {
+            return console.log("User is not an Admin");
+        // Qualify if user is admin level
+        } else if (user_access === 1) {
+            return console.log("User is an admin");
+        };
+        // Create Access Level Object
+        var access_level = new library.User_access(row.access);
+        // Return user admin
+        callback(access_level);
+    });
+};
+*/
 
 // Export matchedGenreBooks callback function, retrieve selected category
 /* Not used, TODO frontend bug, upates list, not results table
